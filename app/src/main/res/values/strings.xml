@@ -2,4 +2,5 @@
     <string name="app_name">Tournament Maker</string>
     <string name="theAdapter" />
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="title_activity_teamcreator">teamcreator</string>
 </resources>
