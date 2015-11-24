@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
+
         // When implementing the real code, the ListAdapter will take values from Tourney Instances
         String listOfTournamentNames[] = {
                 "TD Tourney",
