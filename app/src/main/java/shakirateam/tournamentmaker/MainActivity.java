@@ -1,5 +1,6 @@
 package shakirateam.tournamentmaker;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 "At this point",
                 "It's Scrolling"
         };
-/*
+
         String typeOfTournament[] = {
                 "Knockout",
                 "Knockout",
@@ -73,25 +74,25 @@ public class MainActivity extends AppCompatActivity {
         };
 
         String numberOfTeams[] = {
-                "Teams Registered: 3",
-                "Teams Registered: 6",
-                "Teams Registered: 2",
-                "Teams Registered: 8",
-                "Teams Registered: 2",
-                "Teams Registered: 1",
-                "Teams Registered: 5",
-                "Teams Registered: 9",
-                "Teams Registered: 0",
-                "Teams Registered: 10",
-                "Teams Registered: 3",
-                "Teams Registered: 5"
-        };*/
+                "shakirateam.tournamentmaker.Teams Registered: 3",
+                "shakirateam.tournamentmaker.Teams Registered: 6",
+                "shakirateam.tournamentmaker.Teams Registered: 2",
+                "shakirateam.tournamentmaker.Teams Registered: 8",
+                "shakirateam.tournamentmaker.Teams Registered: 2",
+                "shakirateam.tournamentmaker.Teams Registered: 1",
+                "shakirateam.tournamentmaker.Teams Registered: 5",
+                "shakirateam.tournamentmaker.Teams Registered: 9",
+                "shakirateam.tournamentmaker.Teams Registered: 0",
+                "shakirateam.tournamentmaker.Teams Registered: 10",
+                "shakirateam.tournamentmaker.Teams Registered: 3",
+                "shakirateam.tournamentmaker.Teams Registered: 5"
+        };
 
         // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
         // First: name of tournament from listOfTournamentNames
         ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
                 R.id.textView, listOfTournamentNames);
-/*
+
         // Second: type of tournament
         ListAdapter theAdapter2 = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
                 R.id.textView2, typeOfTournament);
@@ -102,11 +103,15 @@ public class MainActivity extends AppCompatActivity {
         // Fourth: number of teams
         ListAdapter theAdapter4 = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
                 R.id.textView4, numberOfTeams);
-*/
+
         // Scrollable list of items
         ListView listView = (ListView) findViewById(R.id.tournamentView);
 
+
         // Tells the ListView what data to use
+        listView.setAdapter(theAdapter4);
+        listView.setAdapter(theAdapter3);
+        listView.setAdapter(theAdapter2);
         listView.setAdapter(theAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -125,4 +130,10 @@ public class MainActivity extends AppCompatActivity {
 
     }// end onCreate method
 
+    public void OpenTeams(View view) {
+
+
+        Intent intent = new Intent(getApplicationContext(), Teams.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+    }
 }// end MainActivity class
