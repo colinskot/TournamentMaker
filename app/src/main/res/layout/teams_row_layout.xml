@@ -11,7 +11,7 @@
         android:paddingTop="10dp"
         android:paddingRight="10dp"
         android:paddingBottom="10dp"
-        />
+        android:src="@drawable/ic_logo_00" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -23,13 +23,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="35dp"
-            android:textIsSelectable="false" />
+            android:textIsSelectable="false"
+            android:text="Team Name" />
 
         <TextView
             android:id="@+id/gender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
-            />
+            android:text="Gender" />
     </LinearLayout>
 </LinearLayout>
