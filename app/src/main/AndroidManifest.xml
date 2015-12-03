@@ -39,7 +39,10 @@
             android:name=".TournamentInfo"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
-
+        <activity
+            android:name=".TournamentCreator"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
     </application>
 
