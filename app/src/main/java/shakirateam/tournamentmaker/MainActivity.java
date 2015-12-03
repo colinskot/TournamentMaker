@@ -1,33 +1,21 @@
 package shakirateam.tournamentmaker;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 
 public class MainActivity extends AppCompatActivity {
-
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
 
         // When implementing the real code, the ListAdapter will take values from Tourney Instances
         String listOfTournamentNames[] = {
@@ -75,46 +63,28 @@ public class MainActivity extends AppCompatActivity {
                 "Female"
         };
 
-        String numberOfTeams[] = {
-                "shakirateam.tournamentmaker.Teams Registered: 3",
-                "shakirateam.tournamentmaker.Teams Registered: 6",
-                "shakirateam.tournamentmaker.Teams Registered: 2",
-                "shakirateam.tournamentmaker.Teams Registered: 8",
-                "shakirateam.tournamentmaker.Teams Registered: 2",
-                "shakirateam.tournamentmaker.Teams Registered: 1",
-                "shakirateam.tournamentmaker.Teams Registered: 5",
-                "shakirateam.tournamentmaker.Teams Registered: 9",
-                "shakirateam.tournamentmaker.Teams Registered: 0",
-                "shakirateam.tournamentmaker.Teams Registered: 10",
-                "shakirateam.tournamentmaker.Teams Registered: 3",
-                "shakirateam.tournamentmaker.Teams Registered: 5"
-        };
+        String numberOfTeams[] = {"Teams Registered: 2", "Teams Registered: 3",
+                "Teams Registered: 2", "Teams Registered: 0", "Teams Registered: 9",
+                "Teams Registered: 1", "Teams Registered: 10", "Teams Registered: 2",
+                "Teams Registered: 2", "Teams Registered: 5", "Teams Registered: 6",
+                "Teams Registered: 8"};
 
         // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
         // First: name of tournament from listOfTournamentNames
-        ListAdapter theAdapter = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
-                R.id.textView, listOfTournamentNames);
+        ArrayList<CustomTournamentItem> items = new ArrayList<CustomTournamentItem>();
 
-        // Second: type of tournament
-        ListAdapter theAdapter2 = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
-                R.id.textView2, typeOfTournament);
-        // Third: gender
-        ListAdapter theAdapter3 = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
-                R.id.textView3, genders);
+        // Add all the values into the array list
+        for(int i = 0; i < listOfTournamentNames.length; i++) {
+            items.add(new CustomTournamentItem(listOfTournamentNames[i], typeOfTournament[i], genders[i], numberOfTeams[i]));
+        }
 
-        // Fourth: number of teams
-        ListAdapter theAdapter4 = new ArrayAdapter<String>(this, R.layout.tournament_row_layout,
-                R.id.textView4, numberOfTeams);
+        TournamentListAdapter customAdapter = new TournamentListAdapter(this, items);
 
         // Scrollable list of items
-        ListView listView = (ListView) findViewById(R.id.tournamentView);
-
+        ListView listView = (ListView) findViewById(R.id.tournamentListView);
 
         // Tells the ListView what data to use
-        listView.setAdapter(theAdapter4);
-        listView.setAdapter(theAdapter3);
-        listView.setAdapter(theAdapter2);
-        listView.setAdapter(theAdapter);
+        listView.setAdapter(customAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -127,15 +97,13 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
 
     }// end onCreate method
 
     public void OpenTeams(View view) {
 
-
         Intent intent = new Intent(getApplicationContext(), Teams.class); //Application Context and Activity
         startActivityForResult(intent, 0);
     }
+
 }// end MainActivity class

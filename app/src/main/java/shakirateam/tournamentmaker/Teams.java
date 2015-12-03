@@ -47,6 +47,7 @@ public class Teams extends Activity{
                         "Male",
                         "Female"
                 };
+
                 int teamlogos[] = new int[] {
                         R.drawable.ic_logo_00,
                         R.drawable.ic_logo_01,

@@ -21,6 +21,7 @@ public class customlistadapter extends ArrayAdapter{
         this.image_id = image_id;
         this.context = context;
           }
+
 @Override
 public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
@@ -28,7 +29,7 @@ public View getView(int position, View convertView, ViewGroup parent) {
         .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View single_row = inflater.inflate(R.layout.teams_row_layout, null,
         true);
-        TextView textView = (TextView) single_row.findViewById(R.id.textView);
+        TextView textView = (TextView) single_row.findViewById(R.id.nameOfTournament);
         ImageView imageView = (ImageView) single_row.findViewById(R.id.logo);
         textView.setText(color_names[position]);
         imageView.setImageResource(image_id[position]);
