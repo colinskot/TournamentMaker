@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity {
                 "Female"
         };
 
-        String numberOfTeams[] = {"Teams Registered: 2", "Teams Registered: 3",
-                "Teams Registered: 2", "Teams Registered: 0", "Teams Registered: 9",
-                "Teams Registered: 1", "Teams Registered: 10", "Teams Registered: 2",
-                "Teams Registered: 2", "Teams Registered: 5", "Teams Registered: 6",
-                "Teams Registered: 8"};
+        String numberOfTeams[] = {"Games Registered: 2", "Games Registered: 3",
+                "Games Registered: 2", "Games Registered: 0", "Games Registered: 9",
+                "Games Registered: 1", "Games Registered: 10", "Games Registered: 2",
+                "Games Registered: 2", "Games Registered: 5", "Games Registered: 6",
+                "Games Registered: 8"};
 
         // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
         // First: name of tournament from listOfTournamentNames
@@ -95,15 +95,20 @@ public class MainActivity extends AppCompatActivity {
 
                 Toast.makeText(MainActivity.this, tournamentPicked, Toast.LENGTH_SHORT).show();
 
+                openTournamentInfo(tournamentPicked);
+
             }
         });
 
     }// end onCreate method
 
-    public void OpenTeams(View view) {
+    public void openTournamentInfo(String TPicked) {
 
-        Intent intent = new Intent(getApplicationContext(), Teams.class); //Application Context and Activity
+        Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
+        intent.putExtra("selectedTournament",TPicked);
         startActivityForResult(intent, 0);
+
     }
+
 
 }// end MainActivity class

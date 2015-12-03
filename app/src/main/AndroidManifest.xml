@@ -15,7 +15,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Teams"/>
+        <activity android:name=".Games"/>
 
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -35,6 +35,10 @@
             android:name=".CreationChooser"
             android:theme="@style/AppTheme.NoActionBar">
             </activity>
+        <activity
+            android:name=".TournamentInfo"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
 
     </application>
