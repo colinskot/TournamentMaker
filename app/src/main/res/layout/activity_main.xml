@@ -8,22 +8,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
 
-    android:background="#e0e0e0"
+    android:background="#ffffff"
     android:clickable="true"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="List of Tournaments"
-        android:id="@+id/textView"
-        android:textColor="@color/colorPrimaryDark"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="false"
-        android:layout_gravity="center_horizontal" />
+        android:layout_gravity="right">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="List of Tournaments"
+            android:id="@+id/textView"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="false"
+            android:padding="6dp"
+            android:layout_weight="1" />
+
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:text="+"
+            android:id="@+id/createTournament"
+            android:textSize="30dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
+            android:layout_weight="0.2" />
+    </LinearLayout>
 
     <ListView
         android:layout_width="fill_parent"
@@ -32,7 +50,8 @@
         android:choiceMode="singleChoice"
         android:layout_alignParentStart="false"
         android:layout_alignParentEnd="false"
-        android:layout_below="@+id/textView" />
+        android:layout_below="@+id/textView"
+        android:padding="6dp" />
 
 
 

@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 "Games Registered: 8"};
 
         // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
-        // First: name of tournament from listOfTournamentNames
+        // All items in an ArrayList
         ArrayList<CustomTournamentItem> items = new ArrayList<CustomTournamentItem>();
 
         // Add all the values into the array list
@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
+            public void onItemClick(AdapterView tourneyView, View view, int position, long id) {
 
                 String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position))
                         + " Selected";
