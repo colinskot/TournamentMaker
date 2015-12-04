@@ -7,26 +7,28 @@ import java.util.ArrayList;
  */
 public class Tournament {
     private ArrayList<Team> teams = new ArrayList<Team>();
-    private Boolean Gender;
+    private boolean Gender;
     private String TOURNAMENT_TYPE;
     private String password;
+    private boolean isActive = false;
 
-    public Tournament(String type, Boolean gender, String password){
+    public Tournament(String type, boolean gender, String password){
         Gender = gender;
         TOURNAMENT_TYPE = type;
         this.password = password;
     }
-    public Tournament (String type, Boolean gender, String password, ArrayList<Team> teams){
+    public Tournament (String type, boolean gender, boolean activity, String password, ArrayList<Team> teams){
         Gender = gender;
+        isActive = activity;
         TOURNAMENT_TYPE = type;
         this.password = password;
         this.teams = teams;
     }
 
-    public Boolean getGender(){
+    public boolean getGender(){
         return Gender;
     }
-    public void setGender(Boolean gender){
+    public void setGender(boolean gender){
         Gender = gender;
     }
 
@@ -38,9 +40,16 @@ public class Tournament {
         teams.remove(toremove);
     }
 
+    public void setActive(boolean active){
+        isActive = active;
+    }
+    public boolean getActivity(){
+        return isActive;
+    }
+
     public String toString() {
         StringBuffer buffer = new StringBuffer();
-        buffer.append(TOURNAMENT_TYPE + ":" + Gender + ":" + password + ":");
+        buffer.append(TOURNAMENT_TYPE + ":" + Gender + ":" + isActive + ":" + password + ":");
         for (Team t : teams) {
             buffer.append(t.toString() + ":");
         }
