@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 "Games Registered: 8"};
 
         // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
-        // All items in an ArrayList
+        // First: name of tournament from listOfTournamentNames
         ArrayList<CustomTournamentItem> items = new ArrayList<CustomTournamentItem>();
 
         // Add all the values into the array list
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView tourneyView, View view, int position, long id) {
+            public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
 
                 String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position))
                         + " Selected";
@@ -120,27 +120,6 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
         intent.putExtra("selectedTournament",TPicked);
-        startActivityForResult(intent, 0);
-
-    }
-
-    public void openTournamentCreator(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), CreationChooser.class); //Application Context and Activity
-        startActivityForResult(intent, 0);
-
-    }
-
-    public void openScoreDialogue(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), ScoreDialogue.class); //Application Context and Activity
-        startActivityForResult(intent, 0);
-
-    }
-
-    public void openConfirmDialogue(View view) {
-
-        Intent intent = new Intent(getApplicationContext(), ConfirmDialogue.class); //Application Context and Activity
         startActivityForResult(intent, 0);
 
     }
