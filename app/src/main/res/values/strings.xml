@@ -3,4 +3,5 @@
     <string name="theAdapter" />
     <string name="title_activity_main2">Main2Activity</string>
     <string name="title_activity_teamcreator">teamcreator</string>
+    <string name="title_activity_games">Games</string>
 </resources>
