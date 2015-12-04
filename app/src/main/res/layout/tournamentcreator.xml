@@ -9,24 +9,21 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/radioGroup3"
-        android:padding="10dp">
+        android:id="@+id/radioGroup3">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Male"
             android:id="@+id/male_radio_tournament"
-            android:checked="true"
-            android:textSize="20dp" />
+            android:checked="true" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
             android:id="@+id/female_radio_tournament"
-            android:checked="false"
-            android:textSize="20dp" />
+            android:checked="false" />
 
     </RadioGroup>
 
@@ -37,32 +34,28 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/radioGroup2"
-        android:padding="10dp">
+        android:id="@+id/radioGroup2">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Knockout"
             android:id="@+id/radioButton2"
-            android:checked="true"
-            android:textSize="20dp" />
+            android:checked="true" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Round Robin"
             android:id="@+id/radioButton"
-            android:checked="false"
-            android:textSize="20dp" />
+            android:checked="false" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Combination"
             android:id="@+id/radioButton3"
-            android:checked="false"
-            android:textSize="20dp" />
+            android:checked="false" />
     </RadioGroup>
 
     <Button
@@ -76,16 +69,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter the tournament&apos;s password"
         android:id="@+id/tournament_password"
-        android:layout_marginTop="52dp"
+        android:text="Enter the tournament&apos;s password"
         android:layout_below="@+id/radioGroup2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:paddingLeft="10dp" />
+        android:layout_marginTop="33dp" />
 
 </RelativeLayout>

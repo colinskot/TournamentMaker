@@ -9,7 +9,7 @@ import android.view.View;
  */
 public class DeleteTournament extends Activity {
 
-
+    String tournamentName="Tournament Name";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

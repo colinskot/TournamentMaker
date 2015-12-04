@@ -24,7 +24,7 @@ public class CreationChooser extends Activity {
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout(width-20, height/4);
+        getWindow().setLayout(width-20, height/5);
 
         Button team = (Button) findViewById(R.id.team_creation_button);
         Button tournament = (Button) findViewById(R.id.tournament_creation_button);
