@@ -10,6 +10,8 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -17,6 +19,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+    private ArrayList<Team> teams = new ArrayList<Team>();
 
 
     @Override
@@ -25,65 +28,105 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // When implementing the real code, the ListAdapter will take values from Tourney Instances
-        String listOfTournamentNames[] = {
-                "TD Tourney",
-                "Other",
-                "Randoms",
-                "IDK",
-                "Tough Shit",
-                "Intra",
-                "Hardcore",
-                "Butterflies",
-                "Something",
-                "I hope",
-                "At this point",
-                "It's Scrolling"
-        };
 
-        String typeOfTournament[] = {
-                "Knockout",
+
+        String TESTtypeOfTournament[] = {
                 "Knockout",
                 "Round Robin",
                 "Combination",
-                "Round Robin",
-                "Knockout",
-                "Round Robin",
-                "Round Robin",
-                "Knockout",
-                "Round Robin",
-                "Combination",
-                "Combination"
         };
 
-        String genders[] = {
-                "Male",
-                "Female",
-                "Female",
-                "Male",
-                "Male",
-                "Male",
-                "Female",
-                "Male",
-                "Female",
-                "Female",
-                "Male",
-                "Female"
+        boolean TESTgenders[] = {
+                true,
+                false,
+                false,
         };
 
-        String numberOfTeams[] = {"Games Registered: 2", "Games Registered: 3",
-                "Games Registered: 2", "Games Registered: 0", "Games Registered: 9",
-                "Games Registered: 1", "Games Registered: 10", "Games Registered: 2",
-                "Games Registered: 2", "Games Registered: 5", "Games Registered: 6",
-                "Games Registered: 8"};
+        boolean TESTactives[] ={
+                true,
+                false,
+                false
+        };
+        String TESTpasswords[] = {
+                "",
+                "123",
+                "321",
+        };
+        Team TESTteams[]={
+           new Team("Team1","ic_logo_01",true),
+           new Team("Team2","ic_logo_02",false),
+           new Team("Team3","ic_logo_03",false),
+
+        };
+
+        ArrayList<Team> testteams = new ArrayList<Team>();
+            testteams.add(TESTteams[0]);
+            testteams.add(TESTteams[1]);
+            testteams.add(TESTteams[2]);
+
+        teams=testteams;
+
+        String numberOfTeams[] = {"Teams Registered: 2", "Teams Registered: 3",
+                "Teams Registered: 6"} ;
+
+        //input Test values for 3 tournaments
+    for(int i=0;i<3;i++) {
+
+         tournaments.add(new Tournament(TESTtypeOfTournament[i],TESTgenders[i],TESTactives[i],TESTpasswords[i],testteams));
+    }
+
+
 
         // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
         // First: name of tournament from listOfTournamentNames
         ArrayList<CustomTournamentItem> items = new ArrayList<CustomTournamentItem>();
 
-        // Add all the values into the array list
-        for(int i = 0; i < listOfTournamentNames.length; i++) {
-            items.add(new CustomTournamentItem(listOfTournamentNames[i], typeOfTournament[i], genders[i], numberOfTeams[i]));
+
+        Scanner fileScan = null;//filescanner is made
+
+        boolean found = true; //setting true, assume file exists
+
+        try {//tries searching for file indictaed
+
+            fileScan = new Scanner(new File("tournaments.txt"));
         }
+        catch (FileNotFoundException exception) {
+            found = false;
+        }
+
+        if(found==true){
+           tournaments= readTournamentFile();
+
+        }
+        else{
+
+            writeTournamentsFile();
+        }
+
+
+        // Add all the values into the array list
+        for(int i = 0; i < tournaments.size(); i++) {
+            String g;
+            if (tournaments.get(i).getGender()==(true))
+                g = "male";
+            else
+                g = "female";
+            items.add(new CustomTournamentItem("Tournament "+i, tournaments.get(i).getType(),g, numberOfTeams[i]));
+        }
+
+
+        writeTeamFile();
+
+
+
+
+
+
+
+
+
+
+
 
         TournamentListAdapter customAdapter = new TournamentListAdapter(this, items);
 
@@ -97,41 +140,49 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
 
-                String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position))
-                        + " Selected";
+                String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position));
 
-                Toast.makeText(MainActivity.this, tournamentPicked, Toast.LENGTH_SHORT).show();
-
-                openTournamentInfo(tournamentPicked);
+                openTournamentInfo(position);
 
             }
         });
 
     }// end onCreate method
 
-    public void openTournamentInfo(String TPicked) {
+
+
+
+    public void openTournamentInfo(int TPicked) {
+        String TPickedstr= String.valueOf(TPicked);
 
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
-        intent.putExtra("selectedTournament",TPicked);
+        intent.putExtra("selectedTournament",TPickedstr);
         startActivityForResult(intent, 0);
 
     }
+
+
+
+
 
     public void addTournament(Tournament t){
         tournaments.add(t);
     }
 
+
+
     /**
      * Parses tournament information into an array
-     * @param file
+
      * @return ArrayList<Tournament>
      */
-    public ArrayList<Tournament> readTournamentFile(File file){
+
+    public ArrayList<Tournament> readTournamentFile(){
         ArrayList<Tournament> tourny = new ArrayList<>();
 
         try {
 
-            Scanner scanner = new Scanner(file);
+            Scanner scanner = new Scanner("tournaments.txt");
             scanner.useDelimiter(":");
 
 
@@ -158,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
                 password = scanner.next();
 
-                teams = readTeams(scanner);
+                teams = readTournamentTeams(scanner);
 
                 tourny.add(new Tournament(type, g, a, password, teams));
             }
@@ -168,7 +219,13 @@ public class MainActivity extends AppCompatActivity {
         return tourny;
     }
 
-    public ArrayList<Team> readTeams(Scanner scanner){
+
+
+
+
+
+
+    public ArrayList<Team> readTournamentTeams(Scanner scanner){
         ArrayList<Team> teams = new ArrayList<>();
 
 
@@ -193,5 +250,45 @@ public class MainActivity extends AppCompatActivity {
         return teams;
     }
 
+
+
+
+
+
+
+
+    public void writeTournamentsFile() {
+
+        try {
+            FileOutputStream outputStream = openFileOutput("tournaments.txt", Context.MODE_PRIVATE);
+            for (int i = 0; i <=(tournaments.size()); i++){
+                outputStream.write((tournaments.get(i).toString()).getBytes());
+
+            }
+
+            outputStream.write(("!").getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+    public void writeTeamFile() {
+
+        try {
+            FileOutputStream outputStream = openFileOutput("teams.txt", Context.MODE_PRIVATE);
+            for (int i = 0; i <=(teams.size()); i++){
+                outputStream.write((teams.get(i).toString()).getBytes());
+
+            }
+
+            outputStream.write(("!").getBytes());
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 }// end MainActivity class

@@ -15,6 +15,7 @@ public class TournamentInfo extends Activity {
 
 
     String tournamentName="Tournament Name";
+    int TournamentName=0;
     String tournamentType="Type";
     String tournamentGender="Gender";
     boolean tournamentActive=false;
@@ -26,9 +27,9 @@ public class TournamentInfo extends Activity {
         setContentView(R.layout.activity_tournament_info);
 
         tournamentName=getIntent().getStringExtra("selectedTournament");
-
+        TournamentName = Integer.parseInt(tournamentName);
         TextView tournamentTitle = (TextView ) findViewById(R.id.txtTournamentName);
-        tournamentTitle.setText(tournamentName);
+        tournamentTitle.setText("Tournament "+TournamentName);
 
         checkActiveTournament();
 

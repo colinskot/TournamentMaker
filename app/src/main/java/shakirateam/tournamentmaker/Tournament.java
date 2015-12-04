@@ -49,6 +49,9 @@ public class Tournament {
     public boolean getGender(){
         return Gender;
     }
+    public String getType(){
+        return TOURNAMENT_TYPE;
+    }
 
     /**
      * Set the gender of the tournament (Should not really change, but just in case)

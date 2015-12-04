@@ -61,14 +61,14 @@ public class PasswordCheck extends Activity {
 
 
             }
-            else if(whatToOpen==2){
+            else if(whatToOpen==3){
                 //Open Remove Team
                 Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
                 intent.putExtra("AddorRemove",addOrRemoveStr);
                 startActivityForResult(intent, 0);
 
             }
-            else if(whatToOpen==3){
+            else if(whatToOpen==4){
                 //Open Edit Score
 
             }
