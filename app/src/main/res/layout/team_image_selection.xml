@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <ImageButton android:id="@+id/myButton"
+        android:layout_width="128dp"
+        android:layout_height="134dp"
+        android:padding="100dip"
+        android:src="@drawable/ic_logo_00"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="128dp"
+        android:layout_height="134dp"
+        android:padding="100dip"
+        android:src="@drawable/ic_logo_02"
+        android:layout_below="@+id/myButton"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="128dp"
+        android:layout_height="134dp"
+        android:padding="100dip"
+        android:src="@drawable/ic_logo_04"
+        android:layout_below="@+id/imageButton"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false" />
+
+    <ImageButton
+        android:id="@+id/imageButton3"
+        android:layout_width="128dp"
+        android:layout_height="134dp"
+        android:padding="100dip"
+        android:src="@drawable/ic_logo_01"
+        android:layout_alignParentTop="false"
+        android:layout_toRightOf="@+id/myButton"
+        android:layout_toEndOf="@+id/myButton"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false" />
+
+    <ImageButton
+        android:id="@+id/imageButton4"
+        android:layout_width="128dp"
+        android:layout_height="134dp"
+        android:padding="100dip"
+        android:src="@drawable/ic_logo_03"
+        android:layout_below="@+id/imageButton3"
+        android:layout_toRightOf="@+id/myButton"
+        android:layout_toEndOf="@+id/myButton"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false" />
+
+    <ImageButton
+        android:id="@+id/imageButton5"
+        android:layout_width="128dp"
+        android:layout_height="134dp"
+        android:padding="100dip"
+        android:src="@drawable/ic_logo_05"
+        android:layout_below="@+id/imageButton4"
+        android:layout_toRightOf="@+id/imageButton2"
+        android:layout_toEndOf="@+id/imageButton2"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentRight="false"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_alignParentBottom="false" />
+
+</RelativeLayout>

@@ -33,8 +33,12 @@
 
         <activity
             android:name=".CreationChooser"
-            android:theme="@style/AppTheme.NoActionBar">
-            </activity>
+            android:theme="@style/AppTheme.PopUpTheme">
+        </activity>
+        <activity
+            android:name=".ImageChooser"
+            android:theme="@style/AppTheme.PopUpTheme">
+        </activity>
         <activity
             android:name=".TournamentInfo"
             android:theme="@style/AppTheme.NoActionBar">

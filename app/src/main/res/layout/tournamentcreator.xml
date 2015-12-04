@@ -69,15 +69,14 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter the tournament&apos;s password"
         android:id="@+id/tournament_password"
-        android:layout_marginTop="52dp"
+        android:text="Enter the tournament&apos;s password"
         android:layout_below="@+id/radioGroup2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="33dp" />
 
 </RelativeLayout>

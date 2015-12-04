@@ -28,6 +28,12 @@ public class teamcreator extends AppCompatActivity {
                 startActivity(new Intent(teamcreator.this, Teams.class));
             }
         });
+        img.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(teamcreator.this, ImageChooser.class));
+            }
+        });
     }
 
 }
