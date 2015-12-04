@@ -10,16 +10,16 @@
     tools:showIn="@layout/activity_teamcreator"
     tools:context=".teamcreator">
 
-    <TextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Enter the team&apos;s name"
         android:id="@+id/teamnametext"
         android:layout_marginTop="134dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:hint="Enter team name here"/>
 
     <ImageView
         android:layout_width="wrap_content"
