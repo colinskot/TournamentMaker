@@ -7,11 +7,15 @@ public class Team {
     private String name;
     private String logo;
     Boolean Gender;
+    static private int sharedid = 0;
+    private int id;
 
     public Team (String name, String logo, Boolean gender){
         this.name = name;
         this.logo = logo;
         this.Gender = gender;
+        id = sharedid;
+        sharedid++;
     }
 
     public String getName(){
@@ -35,6 +39,9 @@ public class Team {
         Gender = gender;
     }
 
+    public int getId(){
+        return id;
+    }
 
     public String toString(){
         return name + ":" + logo +":" + Gender;

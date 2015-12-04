@@ -12,6 +12,7 @@ import android.widget.SimpleAdapter;
 
 public class Teams extends Activity{
 
+        public ArrayList<Team> teams = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

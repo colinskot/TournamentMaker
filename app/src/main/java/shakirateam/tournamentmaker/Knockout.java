@@ -23,5 +23,9 @@ public class Knockout extends TournamentType{
         }
     }
 
+    public ArrayList<Game> getCurrentStandings(){
+        return currentStandings;
+    }
+
 
 }

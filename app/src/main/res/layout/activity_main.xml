@@ -40,8 +40,7 @@
             android:id="@+id/create"
             android:textSize="30dp"
             android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/white"
-            android:onClick="openTournamentCreator" />
+            android:textColor="@android:color/white" />
     </LinearLayout>
 
     <ListView

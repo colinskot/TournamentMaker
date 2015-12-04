@@ -33,6 +33,16 @@ public class Game {
         return teams;
     }
 
+    public int getNumTeams(){
+        if (getFirstTeam() == null && getSecondTeam() == null)
+            return 0;
+        else if (getSecondTeam() == null || getFirstTeam() == null)
+            return 1;
+        else
+            return 2;
+
+    }
+
     public void setFirstTeam(Team team){
         teams[0] = team;
     }

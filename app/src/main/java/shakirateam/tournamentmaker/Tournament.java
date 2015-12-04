@@ -105,7 +105,7 @@ public class Tournament {
         StringBuffer buffer = new StringBuffer();
         buffer.append(TOURNAMENT_TYPE + ":" + Gender + ":" + isActive + ":" + password + ":");
         for (Team t : teams) {
-            buffer.append(t.toString() + ":");
+            buffer.append(t.getId() + ":");
         }
         return buffer.toString();
     }
