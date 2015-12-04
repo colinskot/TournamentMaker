@@ -10,8 +10,9 @@
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
         android:background="#ffffff"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true">
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="128dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,7 +24,6 @@
             android:textColor="#ffffff"
             android:textStyle="bold"
             android:textSize="30dp"
-            android:layout_gravity="center"
             android:textIsSelectable="false"
             android:background="@color/colorPrimaryDark"
             android:paddingLeft="10dp"
@@ -57,7 +57,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="getTeam"
+                    android:text="getTeam1"
                     android:id="@+id/getTeam1" />
             </LinearLayout>
 
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="getTeam"
+                    android:text="getTeam2"
                     android:id="@+id/textView5" />
             </LinearLayout>
 
@@ -116,7 +116,8 @@
             android:layout_marginBottom="10dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="5dp" />
+            android:layout_marginTop="5dp"
+            android:onClick="openConfirmDialogue" />
 
     </LinearLayout>
 

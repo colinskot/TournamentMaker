@@ -9,21 +9,24 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/radioGroup3">
+        android:id="@+id/radioGroup3"
+        android:padding="10dp">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Male"
             android:id="@+id/male_radio_tournament"
-            android:checked="true" />
+            android:checked="true"
+            android:textSize="20dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Female"
             android:id="@+id/female_radio_tournament"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="20dp" />
 
     </RadioGroup>
 
@@ -34,28 +37,32 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/radioGroup2">
+        android:id="@+id/radioGroup2"
+        android:padding="10dp">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Knockout"
             android:id="@+id/radioButton2"
-            android:checked="true" />
+            android:checked="true"
+            android:textSize="20dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Round Robin"
             android:id="@+id/radioButton"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="20dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Combination"
             android:id="@+id/radioButton3"
-            android:checked="false" />
+            android:checked="false"
+            android:textSize="20dp" />
     </RadioGroup>
 
     <Button
@@ -78,6 +85,7 @@
         android:layout_marginTop="52dp"
         android:layout_below="@+id/radioGroup2"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:paddingLeft="10dp" />
 
 </RelativeLayout>

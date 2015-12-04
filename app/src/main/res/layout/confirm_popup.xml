@@ -10,9 +10,10 @@
         android:layout_height="wrap_content"
         android:layout_alignWithParentIfMissing="false"
         android:background="#ffffff"
-        android:layout_centerVertical="true"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/linearLayout">
+        android:layout_marginTop="158dp">
 
         <TextView
             android:layout_width="wrap_content"
@@ -43,7 +44,7 @@
             android:id="@+id/textView4"
             android:layout_above="@+id/confirmScore"
             android:layout_centerHorizontal="true"
-            android:textColor="black"
+            android:textColor="@android:color/black"
             android:textSize="20dp"
             android:layout_gravity="center"
             android:textIsSelectable="false" />

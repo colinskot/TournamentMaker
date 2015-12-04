@@ -44,17 +44,22 @@ public class TournamentListAdapter extends BaseAdapter{
     public View getView(int position, View view, ViewGroup parent) {
         ViewHolder holder = null;
         if(view == null) {
+
             holder = new ViewHolder();
+
             view = inflater.inflate(R.layout.tournament_row_layout, null);
+
             holder.text1 = (TextView) view.findViewById(R.id.nameOfTournament);
             holder.text2 = (TextView) view.findViewById(R.id.typeOfTournament);
             holder.text3 = (TextView) view.findViewById(R.id.typeOfGender);
             holder.text4 = (TextView) view.findViewById(R.id.numberOfTeams);
+
             view.setTag(holder);
         } else {
             holder = (ViewHolder) view.getTag();
         }
 
+        // Sets the text according to the position of the item in the array
         holder.text1.setText(items.get(position).getItem1());
         holder.text2.setText(items.get(position).getItem2());
         holder.text3.setText(items.get(position).getItem3());

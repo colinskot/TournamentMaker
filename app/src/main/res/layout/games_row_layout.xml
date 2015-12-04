@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    >
+    android:onClick="openScoreDialogue">
     <ImageView
         android:id="@+id/logo1"
         android:layout_width="95dp"
@@ -22,7 +22,8 @@
             android:layout_height="wrap_content"
             android:textSize="26dp"
             android:textIsSelectable="false"
-            android:text="Team Name 1" />
+            android:text="Team Name 1"
+            android:textColor="@android:color/black"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +39,9 @@
             android:layout_height="wrap_content"
             android:textSize="26dp"
             android:textIsSelectable="false"
-            android:text="Team Name 2" />
+            android:text="Team Name 2"
+            android:textColor="@android:color/black"/>
+
     </LinearLayout>
 
     <ImageView

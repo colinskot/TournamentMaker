@@ -110,5 +110,26 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openTournamentCreator(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), CreationChooser.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+
+    }
+
+    public void openScoreDialogue(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), ScoreDialogue.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+
+    }
+
+    public void openConfirmDialogue(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), ConfirmDialogue.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+
+    }
+
 
 }// end MainActivity class
