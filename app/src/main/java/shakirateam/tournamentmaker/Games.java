@@ -3,6 +3,7 @@ package shakirateam.tournamentmaker; /**
  */
 import java.util.ArrayList;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -102,7 +103,7 @@ public class Games extends Activity{
                 customlistadapter adapter = new customlistadapter(this,gameItems);
 
                 // Getting a reference to listview of main.xml layout file
-                ListView listView = ( ListView ) findViewById(R.id.listview);
+                ListView listView = ( ListView ) findViewById(R.id.listOfGames);
 
                 // Setting the adapter to the listView
                 listView.setAdapter(adapter);
@@ -111,8 +112,9 @@ public class Games extends Activity{
                 tournamentTitle.setText(tournamentName+" Games");
         }
 
-        public void setInfo(String TName) {
-                tournamentName=TName;
-                createUserInterface();
+        public void openScoreDialogue(View view) {
+
+                Intent intent = new Intent(getApplicationContext(), ScoreDialogue.class); //Application Context and Activity
+                startActivityForResult(intent, 0);
         }
 }

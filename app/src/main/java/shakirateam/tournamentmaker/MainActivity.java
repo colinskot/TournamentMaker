@@ -108,9 +108,9 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < tournaments.size(); i++) {
             String g;
             if (tournaments.get(i).getGender()==(true))
-                g = "male";
+                g = "Mens";
             else
-                g = "female";
+                g = "Womens";
             items.add(new CustomTournamentItem("Tournament "+i, tournaments.get(i).getType(),g, numberOfTeams[i]));
         }
 
@@ -161,7 +161,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openTournamentCreator(View view) {
 
+
+        Intent intent = new Intent(getApplicationContext(), CreationChooser.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+
+    }
 
 
 
