@@ -71,26 +71,34 @@ public class TournamentInfo extends Activity {
 
     }
     public void onClickDelete(View view) {
+        String whattodo= String.valueOf(1);
 
-        Intent intent = new Intent(getApplicationContext(), DeleteTournament.class); //Application Context and Activity
+        Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
+        intent.putExtra("WHATTODO",whattodo);
         intent.putExtra("TournamentName",tournamentName);
+
         startActivityForResult(intent, 0);
 
     }
     public void onClickAdd(View view) {
+        String whattodo= String.valueOf(2);
+
         int num=1;
         String numstr= String.valueOf(num);
-        Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
-
+        Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
+        intent.putExtra("WHATTODO",whattodo);
         intent.putExtra("AddorRemove",numstr);
         startActivityForResult(intent, 0);
 
     }
     public void onClickRemove(View view) {
+        String whattodo= String.valueOf(3);
+
         int num=0;
         String numstr= String.valueOf(num);
-        Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
+        Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("AddorRemove",numstr);
+        intent.putExtra("WHATTODO",whattodo);
         startActivityForResult(intent, 0);
 
     }

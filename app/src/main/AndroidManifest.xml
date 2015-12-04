@@ -55,6 +55,10 @@
             android:name=".AddorRemoveTeamTournament"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".PasswordCheck"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
     </application>
 
