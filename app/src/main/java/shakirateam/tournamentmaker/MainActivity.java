@@ -9,23 +9,16 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.InputStream;
+import java.io.File;
+import java.util.Scanner;
 import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity {
 
-
-    public void creatFile(){
-        try{
-            InputStream stream = getApplicationContext().getResources().openRawResource(R.raw.tournaments);
-        }catch(Exception e){}
+    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 
 
-    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -122,6 +115,66 @@ public class MainActivity extends AppCompatActivity {
         intent.putExtra("selectedTournament",TPicked);
         startActivityForResult(intent, 0);
 
+    }
+
+    public ArrayList<Tournament> readTournamentFile(File file){
+        ArrayList<Tournament> tourny = new ArrayList<>();
+
+        try {
+
+            Scanner scanner = new Scanner(file);
+            scanner.useDelimiter(":");
+
+
+            String type, gender, password;
+
+            ArrayList<Team> teams = new ArrayList<>();
+
+            
+            Boolean g;
+            while(scanner.hasNext()) {
+
+                type = scanner.next();
+                gender = scanner.next();
+                if (gender.equals("male"))
+                    g = true;
+                else
+                    g = false;
+                password = scanner.next();
+
+                teams = readTeams(scanner);
+
+                tourny.add(new Tournament(type,g,password,teams));
+            }
+        } catch (Exception e) {
+            System.out.println("Error reading file...");
+        }
+        return tourny;
+    }
+
+    public ArrayList<Team> readTeams(Scanner scanner){
+        ArrayList<Team> teams = new ArrayList<>();
+
+
+        String name, gender, logo;
+        Boolean g;
+        Boolean exit = false;
+        while(scanner.hasNext() || exit == true) {
+
+            name = scanner.next();
+            if (name.equals("!"))
+                exit = true;
+            logo = scanner.next();
+            gender = scanner.next();
+            if (gender.equals("male"))
+                g = true;
+            else
+                g = false;
+            teams.add(new Team(name, logo, g));
+
+        }
+
+        return teams;
     }
 
 

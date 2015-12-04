@@ -16,6 +16,12 @@ public class Tournament {
         TOURNAMENT_TYPE = type;
         this.password = password;
     }
+    public Tournament (String type, Boolean gender, String password, ArrayList<Team> teams){
+        Gender = gender;
+        TOURNAMENT_TYPE = type;
+        this.password = password;
+        this.teams = teams;
+    }
 
     public Boolean getGender(){
         return Gender;
