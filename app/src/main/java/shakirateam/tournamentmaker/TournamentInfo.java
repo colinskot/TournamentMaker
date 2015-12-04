@@ -3,6 +3,7 @@ package shakirateam.tournamentmaker;
 import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
+import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
 
@@ -16,7 +17,8 @@ public class TournamentInfo extends Activity {
     String tournamentName="Tournament Name";
     String tournamentType="Type";
     String tournamentGender="Gender";
-    String tournamentActive="Active";
+    boolean tournamentActive=false;
+    int teamsRegistered=0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,69 @@ public class TournamentInfo extends Activity {
 
         TextView tournamentTitle = (TextView ) findViewById(R.id.txtTournamentName);
         tournamentTitle.setText(tournamentName);
+
+        checkActiveTournament();
+
+
+    }
+
+    public void checkActiveTournament() {
+        Button btnViewGames = (Button) findViewById(R.id.btnViewGames);
+
+        if(tournamentActive==true){
+
+            btnViewGames.setEnabled(true);
+
+            Button btnAddTeam = (Button) findViewById(R.id.btnAddTeam);
+            btnAddTeam.setEnabled(false);
+
+            Button btnRemoveTeam = (Button) findViewById(R.id.btnRemoveTeam);
+            btnRemoveTeam.setEnabled(false);
+
+            Button btnStart = (Button) findViewById(R.id.btnStart);
+            btnStart.setEnabled(false);
+
+            btnStart.setText("Started");
+        }
+        else {
+
+            btnViewGames.setEnabled(false);
+
+        }
+
+
+
+
+
+    }
+    public void onClickStart(View view) {
+
+        tournamentActive=true;
+        checkActiveTournament();
+
+    }
+    public void onClickDelete(View view) {
+
+        Intent intent = new Intent(getApplicationContext(), DeleteTournament.class); //Application Context and Activity
+        intent.putExtra("TournamentName",tournamentName);
+        startActivityForResult(intent, 0);
+
+    }
+    public void onClickAdd(View view) {
+        int num=1;
+        String numstr= String.valueOf(num);
+        Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
+
+        intent.putExtra("AddorRemove",numstr);
+        startActivityForResult(intent, 0);
+
+    }
+    public void onClickRemove(View view) {
+        int num=0;
+        String numstr= String.valueOf(num);
+        Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
+        intent.putExtra("AddorRemove",numstr);
+        startActivityForResult(intent, 0);
 
     }
 

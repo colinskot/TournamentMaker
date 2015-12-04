@@ -8,7 +8,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal">
+        android:gravity="center_horizontal"
+        android:baselineAligned="false">
 
         <TextView
             android:layout_width="wrap_content"
@@ -16,7 +17,8 @@
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="Tournament Name"
             android:id="@+id/txtTournamentName"
-            android:textSize="35dp" />
+            android:textSize="35dp"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,33 +59,42 @@
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:text="Add Team"
-                android:id="@+id/btnAddTeam" />
+                android:id="@+id/btnAddTeam"
+                android:textStyle="bold"
+                android:onClick="onClickAdd" />
 
             <Button
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:text="Remove Team"
-                android:id="@+id/btnRemoveTeam" />
+                android:id="@+id/btnRemoveTeam"
+                android:textStyle="bold"
+                android:onClick="onClickRemove" />
 
             <Button
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:text="View Games"
                 android:id="@+id/btnViewGames"
-                android:onClick="openTournamentGames" />
+                android:onClick="openTournamentGames"
+                android:textStyle="bold" />
 
             <Button
                 android:layout_width="160dp"
                 android:layout_height="160dp"
                 android:text="Start "
-                android:id="@+id/btnStart" />
+                android:id="@+id/btnStart"
+                android:onClick="onClickStart"
+                android:textStyle="bold" />
         </GridLayout>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Delete Tournament"
-            android:id="@+id/btnDelete" />
+            android:id="@+id/btnDelete"
+            android:backgroundTint="#ff9a9a"
+            android:onClick="onClickDelete" />
     </LinearLayout>
 
 </LinearLayout>
