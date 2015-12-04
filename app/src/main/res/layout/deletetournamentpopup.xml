@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="DELETE TOURNAMENT"
+        android:id="@+id/textView3"
+        android:layout_gravity="center_horizontal"
+        android:textColor="#ff0000"
+        android:textSize="28dp"
+        android:layout_weight="0.14" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Are you sure you want to Delete:"
+        android:id="@+id/textView2"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Tournament Name"
+        android:id="@+id/txtTournamentName"
+        android:layout_gravity="center_horizontal"
+        android:textSize="35dp" />
+
+    <Space
+        android:layout_width="327dp"
+        android:layout_height="124dp"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:layout_width="262dp"
+        android:layout_height="wrap_content"
+        android:text="Delete"
+        android:id="@+id/btnDelete"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.47"
+        android:background="#ff9a9a"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:onClick="onClickDeleteTournament" />
+</LinearLayout>

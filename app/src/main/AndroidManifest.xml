@@ -43,6 +43,14 @@
             android:name=".TournamentCreator"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".DeleteTournament"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".AddorRemoveTeamTournament"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
 
     </application>
 
