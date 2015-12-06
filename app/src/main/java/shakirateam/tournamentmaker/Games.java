@@ -109,7 +109,7 @@ public class Games extends Activity{
                 listView.setAdapter(adapter);
 
                 TextView tournamentTitle = (TextView ) findViewById(R.id.tournamentGamesTitle);
-                tournamentTitle.setText(tournamentName+" Games");
+                tournamentTitle.setText("Tournament "+tournamentName+" Games");
         }
 
         public void openScoreDialogue(View view) {

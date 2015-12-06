@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.List;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -93,5 +95,12 @@ public class Teams extends Activity{
 
         // Setting the adapter to the listView
         listView.setAdapter(adapterT);
+    }
+    public void openTeamCreator(View view) {
+
+
+        Intent intent = new Intent(getApplicationContext(), CreationChooser.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+
     }
 }

@@ -8,8 +8,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -162,9 +160,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void openTournamentInfo(int TPicked) {
         String TPickedstr= String.valueOf(TPicked);
+        String TType= tournaments.get(TPicked).getType();
+        String TGender=String.valueOf(tournaments.get(TPicked).getGender());
+        String TActive=String.valueOf(tournaments.get(TPicked).getActivity());
 
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
         intent.putExtra("selectedTournament",TPickedstr);
+        intent.putExtra("tournamentType",TType);
+        intent.putExtra("tournamentGender",TGender);
+        intent.putExtra("tournamentActive",TActive);
+
+
         startActivityForResult(intent, 0);
 
     }
@@ -177,7 +183,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openTeams(View view) {
 
+
+        Intent intent = new Intent(getApplicationContext(), Teams.class); //Application Context and Activity
+        startActivityForResult(intent, 0);
+
+    }
 
     public void addTournament(Tournament t){
         tournaments.add(t);

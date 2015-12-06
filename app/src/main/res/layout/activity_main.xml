@@ -18,20 +18,31 @@
         android:layout_height="wrap_content"
         android:layout_gravity="right">
 
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:id="@+id/btnTeams"
+            android:textSize="16dp"
+            android:background="@color/colorPrimaryDark"
+            android:textColor="@android:color/white"
+            android:onClick="openTeams"
+            android:text="Teams" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="fill_parent"
-            android:text="List of Tournaments"
+            android:text="Tournaments"
             android:id="@+id/textView"
             android:textColor="@color/colorPrimaryDark"
-            android:textSize="30dp"
+            android:textSize="26dp"
             android:textStyle="bold"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="false"
             android:layout_weight="1"
             android:paddingLeft="6dp"
-            android:gravity="center_vertical" />
+            android:gravity="center_vertical"
+            android:textAlignment="center" />
 
         <Button
             android:layout_width="70dp"

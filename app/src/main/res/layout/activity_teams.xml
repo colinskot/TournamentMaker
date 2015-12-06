@@ -33,7 +33,7 @@
             android:textSize="30dp"
             android:background="@color/colorPrimaryDark"
             android:textColor="@android:color/white"
-            android:onClick="openTournamentCreator" />
+            android:onClick="openTeamCreator" />
     </LinearLayout>
 
     <ListView

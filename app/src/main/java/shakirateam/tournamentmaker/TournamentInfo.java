@@ -18,8 +18,11 @@ public class TournamentInfo extends Activity {
     int TournamentName=0;
     String tournamentType="Type";
     String tournamentGender="Gender";
-    boolean tournamentActive=false;
+    boolean tournamentActiveboolean=false;
     int teamsRegistered=0;
+
+
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -28,8 +31,39 @@ public class TournamentInfo extends Activity {
 
         tournamentName=getIntent().getStringExtra("selectedTournament");
         TournamentName = Integer.parseInt(tournamentName);
+        tournamentType=getIntent().getStringExtra("tournamentType");
+        tournamentGender=getIntent().getStringExtra("tournamentGender");
+        String tournamentActive=getIntent().getStringExtra("tournamentActive");
+
+
         TextView tournamentTitle = (TextView ) findViewById(R.id.txtTournamentName);
         tournamentTitle.setText("Tournament "+TournamentName);
+        TextView tournamentTypeText = (TextView ) findViewById(R.id.txtTournamentType);
+        tournamentTypeText.setText(tournamentType);
+        TextView tournamentGenderText = (TextView ) findViewById(R.id.txtGender);
+
+        if(tournamentGender.equals("true")){
+
+            tournamentGenderText.setText("Mens");
+        }
+        else{
+            tournamentGenderText.setText("Womens");
+        }
+
+        TextView tournamentActiveText = (TextView ) findViewById(R.id.txtActive);
+
+        if(tournamentActive.equals("true")){
+            tournamentActiveboolean=true;
+            tournamentActiveText.setText("Active");
+
+
+        }
+        else{
+            tournamentActiveboolean=false;
+            tournamentActiveText.setText("Not Active");
+        }
+
+
 
         checkActiveTournament();
 
@@ -39,8 +73,9 @@ public class TournamentInfo extends Activity {
     public void checkActiveTournament() {
         Button btnViewGames = (Button) findViewById(R.id.btnViewGames);
 
-        if(tournamentActive==true){
-
+        if(tournamentActiveboolean==true){
+            TextView tournamentActiveText = (TextView ) findViewById(R.id.txtActive);
+            tournamentActiveText.setText("Active");
             btnViewGames.setEnabled(true);
 
             Button btnAddTeam = (Button) findViewById(R.id.btnAddTeam);
@@ -67,7 +102,7 @@ public class TournamentInfo extends Activity {
     }
     public void onClickStart(View view) {
 
-        tournamentActive=true;
+        tournamentActiveboolean=true;
         checkActiveTournament();
 
     }
