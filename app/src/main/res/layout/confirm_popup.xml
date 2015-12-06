@@ -12,8 +12,8 @@
         android:background="#ffffff"
         android:id="@+id/linearLayout"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="158dp">
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
         <TextView
             android:layout_width="wrap_content"
@@ -65,7 +65,8 @@
                 android:layout_height="wrap_content"
                 android:text="Yes"
                 android:id="@+id/yesScore"
-                android:layout_marginRight="20dp" />
+                android:layout_marginRight="20dp"
+                android:onClick="onYes" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -75,7 +76,8 @@
                 android:layout_alignParentTop="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp" />
+                android:layout_marginLeft="20dp"
+                android:onClick="onCancel" />
 
         </LinearLayout>
 

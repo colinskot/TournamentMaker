@@ -7,6 +7,7 @@ import android.widget.Toast;
  */
 public class Game {
     private Team[] teams = new Team[2];
+    private int[] score = {0,0};
 
     public Game(){
         teams[0] = null;

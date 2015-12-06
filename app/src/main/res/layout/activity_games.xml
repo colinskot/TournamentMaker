@@ -11,8 +11,8 @@
         android:layout_gravity="right" >
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="70dp"
             android:text="List of Games"
             android:id="@+id/tournamentGamesTitle"
             android:textColor="@color/colorPrimaryDark"
@@ -21,19 +21,9 @@
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_alignParentBottom="false"
-            android:layout_weight="1"
             android:paddingLeft="6dp"
             android:gravity="center_vertical" />
 
-        <Button
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:text="+"
-            android:id="@+id/create"
-            android:textSize="30dp"
-            android:background="@color/colorPrimaryDark"
-            android:textColor="@android:color/white"
-            android:onClick="openTournamentCreator" />
     </LinearLayout>
 
     <ListView

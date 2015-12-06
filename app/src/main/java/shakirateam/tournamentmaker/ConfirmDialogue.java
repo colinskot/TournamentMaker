@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 
 /**
@@ -17,7 +18,28 @@ public class ConfirmDialogue extends Activity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.score_popup);
+        setContentView(R.layout.confirm_popup);
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout(width - 420, (height / 3) - 150);
     }
 
+    public void onCancel(View view){
+        finish();
+    }
+
+    public void onYes(View view){
+
+        String score1 = getIntent().getExtras().getString("score1");
+        String score2 = getIntent().getExtras().getString("score2");
+
+
+
+        finish();
+    }
 }
