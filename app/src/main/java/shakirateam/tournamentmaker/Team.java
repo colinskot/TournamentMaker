@@ -1,9 +1,11 @@
 package shakirateam.tournamentmaker;
 
+import java.io.Serializable;
+
 /**
  * Created by Mark on 2015-12-03.
  */
-public class Team {
+public class Team  implements Serializable {
     private String name;
     private String logo;
     Boolean Gender;

@@ -84,9 +84,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
-        // First: name of tournament from listOfTournamentNames
-        ArrayList<CustomTournamentItem> items = new ArrayList<CustomTournamentItem>();
+
 
 
         Scanner fileScan = null;//filescanner is made
@@ -110,15 +108,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-        // Add all the values into the array list
-        for(int i = 0; i < tournaments.size(); i++) {
-            String g;
-            if (tournaments.get(i).getGender()==(true))
-                g = "Mens";
-            else
-                g = "Womens";
-            items.add(new CustomTournamentItem("Tournament "+i, tournaments.get(i).getType(),g, numberOfTeams[i]));
-        }
+        updateTournamentList(tournaments);
 
 
         writeTeamFile();
@@ -126,13 +116,25 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }// end onCreate method
 
 
+    public void updateTournamentList(ArrayList<Tournament> newTournamentList) {
+        tournaments=newTournamentList;
 
+        // All ListAdapter items: name of tournament, type of tournament, gender, number of teams
+        // First: name of tournament from listOfTournamentNames
+        ArrayList<CustomTournamentItem> items = new ArrayList<CustomTournamentItem>();
 
-
-
-
+        // Add all the values into the array list
+        for(int i = 0; i < tournaments.size(); i++) {
+            String g;
+            if (tournaments.get(i).getGender()==(true))
+                g = "Mens";
+            else
+                g = "Womens";
+            items.add(new CustomTournamentItem("Tournament "+i, tournaments.get(i).getType(),g, "3"));
+        }
 
         TournamentListAdapter customAdapter = new TournamentListAdapter(this, items);
 
@@ -153,23 +155,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-    }// end onCreate method
 
+    }
 
 
 
     public void openTournamentInfo(int TPicked) {
         String TPickedstr= String.valueOf(TPicked);
-        String TType= tournaments.get(TPicked).getType();
-        String TGender=String.valueOf(tournaments.get(TPicked).getGender());
-        String TActive=String.valueOf(tournaments.get(TPicked).getActivity());
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments );
 
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
         intent.putExtra("selectedTournament",TPickedstr);
-        intent.putExtra("tournamentType",TType);
-        intent.putExtra("tournamentGender",TGender);
-        intent.putExtra("tournamentActive",TActive);
-
+        intent.putExtra("extra",extra);
 
         startActivityForResult(intent, 0);
 
@@ -319,5 +317,31 @@ public class MainActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_CANCELED) return;
+
+        if (requestCode == 0) {
+
+        }
+        if (requestCode == 1) {
+
+        }
+        if (requestCode == 2) {
+
+        }
+
+
+
+
+
+
+    }
+
+
+
 
 }// end MainActivity class

@@ -33,6 +33,7 @@ public class CreationChooser extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CreationChooser.this, teamcreator.class));
+                finish();
             }
         });
 
@@ -40,6 +41,7 @@ public class CreationChooser extends Activity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(CreationChooser.this, TournamentCreator.class));
+                finish();
             }
         });
     }

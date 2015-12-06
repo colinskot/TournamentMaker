@@ -50,14 +50,14 @@ public class PasswordCheck extends Activity {
                 intent.putExtra("TournamentName",tournamentname);
 
                 startActivityForResult(intent, 0);
-
+                finish();
             }
             else if(whatToOpen==2){
                 //open Add Team
                 Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
                 intent.putExtra("AddorRemove",addOrRemoveStr);
                 startActivityForResult(intent, 0);
-
+                finish();
 
 
             }
@@ -66,7 +66,7 @@ public class PasswordCheck extends Activity {
                 Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
                 intent.putExtra("AddorRemove",addOrRemoveStr);
                 startActivityForResult(intent, 0);
-
+                finish();
             }
             else if(whatToOpen==4){
                 //Open Edit Score

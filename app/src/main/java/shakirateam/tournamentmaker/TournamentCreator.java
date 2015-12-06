@@ -54,6 +54,7 @@ public class TournamentCreator extends Activity{
 
                 t = new Tournament(type, gender, password.getText().toString());
                 startActivity(new Intent(TournamentCreator.this, MainActivity.class));
+                finish();
             }
         });
     }

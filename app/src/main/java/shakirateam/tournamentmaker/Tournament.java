@@ -1,11 +1,12 @@
 package shakirateam.tournamentmaker;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * Created by Mark on 2015-12-04.
  */
-public class Tournament {
+public class Tournament implements Serializable {
     private ArrayList<Team> teams = new ArrayList<Team>();//Teams involved in the tournament
     private boolean Gender;//Gender of the tournament
     private String TOURNAMENT_TYPE;//Knockout, Round robin, combination

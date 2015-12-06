@@ -7,13 +7,15 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
 
+import java.util.ArrayList;
+
 
 /**
  * Created by Dylan on 2015-12-03.
  */
 public class TournamentInfo extends Activity {
 
-
+    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
     String tournamentName="Tournament Name";
     int TournamentName=0;
     String tournamentType="Type";
@@ -29,11 +31,17 @@ public class TournamentInfo extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tournament_info);
 
+        Bundle extra = getIntent().getBundleExtra("extra");
+
+        tournaments = (ArrayList<Tournament>) extra.getSerializable("tournamentsList");
+
+
+
         tournamentName=getIntent().getStringExtra("selectedTournament");
         TournamentName = Integer.parseInt(tournamentName);
-        tournamentType=getIntent().getStringExtra("tournamentType");
-        tournamentGender=getIntent().getStringExtra("tournamentGender");
-        String tournamentActive=getIntent().getStringExtra("tournamentActive");
+        tournamentType=tournaments.get(TournamentName).getType();
+        tournamentGender=String.valueOf(tournaments.get(TournamentName).getGender());
+        String tournamentActive=String.valueOf(tournaments.get(TournamentName).getActivity());
 
 
         TextView tournamentTitle = (TextView ) findViewById(R.id.txtTournamentName);
@@ -108,15 +116,23 @@ public class TournamentInfo extends Activity {
     }
     public void onClickDelete(View view) {
         String whattodo= String.valueOf(1);
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments );
 
         Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("WHATTODO",whattodo);
-        intent.putExtra("TournamentName",tournamentName);
+        intent.putExtra("TournamentName", tournamentName);
+        intent.putExtra("extra",extra);
 
         startActivityForResult(intent, 0);
 
+
     }
     public void onClickAdd(View view) {
+
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments );
+
         String whattodo= String.valueOf(2);
 
         int num=1;
@@ -124,10 +140,15 @@ public class TournamentInfo extends Activity {
         Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("WHATTODO",whattodo);
         intent.putExtra("AddorRemove",numstr);
+        intent.putExtra("extra",extra);
         startActivityForResult(intent, 0);
 
     }
     public void onClickRemove(View view) {
+
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments );
+
         String whattodo= String.valueOf(3);
 
         int num=0;
@@ -135,17 +156,44 @@ public class TournamentInfo extends Activity {
         Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("AddorRemove",numstr);
         intent.putExtra("WHATTODO",whattodo);
+        intent.putExtra("extra",extra);
         startActivityForResult(intent, 0);
 
     }
 
     public void openTournamentGames(View view) {
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments );
 
         Intent intent = new Intent(getApplicationContext(), Games.class); //Application Context and Activity
         intent.putExtra("selectedTournament",tournamentName);
+        intent.putExtra("extra",extra);
         startActivityForResult(intent, 0);
 
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == RESULT_CANCELED) return;
+
+        if (requestCode == 0) {
+
+        }
+        if (requestCode == 1) {
+
+        }
+        if (requestCode == 2) {
+
+        }
+
+
+
+
+
+
+    }
+
+
+
 
 
 
