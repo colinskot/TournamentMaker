@@ -156,10 +156,10 @@ public class MainActivity extends AppCompatActivity {
     public void openTournamentInfo(int TPicked) {
         String TPickedstr= String.valueOf(TPicked);
         Bundle extra = new Bundle();
-        extra.putSerializable("tournamentsList", tournaments);
-
+        extra.putSerializable("tournament", tournaments.get(TPicked));
+        extra.putSerializable("teams", teams);
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
-        intent.putExtra("selectedTournament",TPickedstr);
+
         intent.putExtra("extra",extra);
 
         startActivityForResult(intent, 0);

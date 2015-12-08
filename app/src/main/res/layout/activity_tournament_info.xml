@@ -74,10 +74,11 @@
             <Button
                 android:layout_width="160dp"
                 android:layout_height="160dp"
-                android:text="View Games"
+                android:text="View Teams"
                 android:id="@+id/btnViewGames"
                 android:onClick="openTournamentGames"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:enabled="true" />
 
             <Button
                 android:layout_width="160dp"

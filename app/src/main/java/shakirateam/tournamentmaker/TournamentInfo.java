@@ -15,7 +15,9 @@ import java.util.ArrayList;
  */
 public class TournamentInfo extends Activity {
 
-    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+    private Tournament tournament;
+    private ArrayList<Team> teams;
+    private ArrayList<Team> totalTeams;
     String tournamentName="Tournament Name";
     int TournamentName=0;
     String tournamentType="Type";
@@ -32,28 +34,30 @@ public class TournamentInfo extends Activity {
         setContentView(R.layout.activity_tournament_info);
 
         Bundle extra = getIntent().getBundleExtra("extra");
-        tournaments = (ArrayList<Tournament>) extra.getSerializable("tournamentsList");
+        //Bundle team = getIntent().getBundleExtra("team");
 
-        tournamentName=getIntent().getStringExtra("selectedTournament");
-        TournamentName = Integer.parseInt(tournamentName);
-        tournamentType=tournaments.get(TournamentName).getType();
-        tournamentGender=String.valueOf(tournaments.get(TournamentName).getGender());
-        String tournamentActive=String.valueOf(tournaments.get(TournamentName).getActivity());
+        tournament = (Tournament) extra.getSerializable("tournament");
+        teams = (ArrayList<Team>) extra.getSerializable("teams");
+
+
+
+        tournamentName="Tournament";
+        //TournamentName = Integer.parseInt(tournamentName);
+        tournamentType=tournament.getType();
+        tournamentGender = "Womens";
+        if (tournament.getGender() == true)
+            tournamentGender = "Mens";
+
+        String tournamentActive=String.valueOf(tournament.getActivity());
 
 
         TextView tournamentTitle = (TextView ) findViewById(R.id.txtTournamentName);
-        tournamentTitle.setText("Tournament "+TournamentName);
+        tournamentTitle.setText("Tournament");
         TextView tournamentTypeText = (TextView ) findViewById(R.id.txtTournamentType);
         tournamentTypeText.setText(tournamentType);
         TextView tournamentGenderText = (TextView ) findViewById(R.id.txtGender);
 
-        if(tournamentGender.equals("true")){
-
-            tournamentGenderText.setText("Mens");
-        }
-        else{
-            tournamentGenderText.setText("Womens");
-        }
+        tournamentGenderText.setText(tournamentGender);
 
         TextView tournamentActiveText = (TextView ) findViewById(R.id.txtActive);
 
@@ -81,7 +85,8 @@ public class TournamentInfo extends Activity {
         if(tournamentActiveboolean==true){
             TextView tournamentActiveText = (TextView ) findViewById(R.id.txtActive);
             tournamentActiveText.setText("Active");
-            btnViewGames.setEnabled(true);
+            //btnViewGames.setEnabled(true);
+            btnViewGames.setText("View Games");
 
             Button btnAddTeam = (Button) findViewById(R.id.btnAddTeam);
             btnAddTeam.setEnabled(false);
@@ -96,7 +101,7 @@ public class TournamentInfo extends Activity {
         }
         else {
 
-            btnViewGames.setEnabled(false);
+            //btnViewGames.setEnabled(false);
 
         }
 
@@ -114,12 +119,12 @@ public class TournamentInfo extends Activity {
     public void onClickDelete(View view) {
         String whattodo= String.valueOf(1);
         Bundle extra = new Bundle();
-        extra.putSerializable("tournamentsList", tournaments );
+        extra.putSerializable("tournament", tournament);
 
         Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("WHATTODO",whattodo);
-        intent.putExtra("TournamentName", tournamentName);
-        intent.putExtra("extra",extra);
+
+        intent.putExtra("extra", extra);
 
         startActivityForResult(intent, 0);
 
@@ -128,7 +133,9 @@ public class TournamentInfo extends Activity {
     public void onClickAdd(View view) {
 
         Bundle extra = new Bundle();
-        extra.putSerializable("tournamentsList", tournaments );
+        Bundle team = new Bundle();
+        extra.putSerializable("tournament", tournament);
+        extra.putSerializable("teams", teams);
 
         String whattodo= String.valueOf(2);
 
@@ -138,13 +145,15 @@ public class TournamentInfo extends Activity {
         intent.putExtra("WHATTODO",whattodo);
         intent.putExtra("AddorRemove",numstr);
         intent.putExtra("extra",extra);
+        //intent.putExtra("team", team);
+
         startActivityForResult(intent, 0);
 
     }
     public void onClickRemove(View view) {
 
         Bundle extra = new Bundle();
-        extra.putSerializable("tournamentsList", tournaments );
+        extra.putSerializable("tournament", tournament);
 
         String whattodo= String.valueOf(3);
 
@@ -158,15 +167,27 @@ public class TournamentInfo extends Activity {
 
     }
 
+
     public void openTournamentGames(View view) {
-        Bundle extra = new Bundle();
-        extra.putSerializable("tournamentsList", tournaments );
+        Button btn = (Button) findViewById(R.id.btnViewGames);
+        Intent intent;
+        Bundle extra;
+        if (btn.getText().toString().equals("View Teams")){
+            intent =  new Intent(TournamentInfo.this, TournamentTeamsList.class);
+            extra = new Bundle();
+            extra.putSerializable("tournament", tournament);
 
-        Intent intent = new Intent(getApplicationContext(), Games.class); //Application Context and Activity
-        intent.putExtra("selectedTournament",tournamentName);
-        intent.putExtra("extra",extra);
-        startActivityForResult(intent, 0);
+            intent.putExtra("extra", extra);
+            startActivityForResult(intent, 0);
+        }else {
+            extra = new Bundle();
+            extra.putSerializable("tournament", tournament);
 
+            intent = new Intent(getApplicationContext(), Games.class); //Application Context and Activity
+
+            intent.putExtra("extra", extra);
+            startActivity(intent);
+        }
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -180,6 +201,9 @@ public class TournamentInfo extends Activity {
         }
         if (requestCode == 2) {
 
+        }
+        if (requestCode == 9){
+            tournament = (Tournament) getIntent().getBundleExtra("extra").getSerializable("tournament");
         }
 
 

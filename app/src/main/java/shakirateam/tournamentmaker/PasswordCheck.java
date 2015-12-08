@@ -54,8 +54,10 @@ public class PasswordCheck extends Activity {
             }
             else if(whatToOpen==2){
                 //open Add Team
-                Intent intent = new Intent(getApplicationContext(), AddorRemoveTeamTournament.class); //Application Context and Activity
+                Intent intent = new Intent(getApplicationContext(), TournamentTeamsList.class); //Application Context and Activity
                 intent.putExtra("AddorRemove",addOrRemoveStr);
+                intent.putExtra("team", getIntent().getBundleExtra("team"));
+                intent.putExtra("extra", getIntent().getBundleExtra("extra"));
                 startActivityForResult(intent, 0);
                 finish();
 

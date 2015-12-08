@@ -16,7 +16,7 @@ import java.util.ArrayList;
  */
 public class TournamentCreator extends Activity{
 
-    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+    private ArrayList<Tournament> tournaments = new ArrayList<>();
     String type;
     String passwordstring;
     boolean gender;
@@ -53,7 +53,7 @@ public class TournamentCreator extends Activity{
                     type = "Knockout";
                 }
                 else if (typeid == R.id.radioButton){
-                    type = "RoundRobin";
+                    type = "Round Robin";
                 }
 
                 else {
@@ -61,7 +61,7 @@ public class TournamentCreator extends Activity{
                 }
 
 
-                if (tournamentgender.getCheckedRadioButtonId() == R.id.male_radio) {
+                if (tournamentgender.getCheckedRadioButtonId() == R.id.male_radio_tournament) {
                     gender = true;
                 }
                 else {

@@ -71,7 +71,10 @@
             android:name=".Teams"
             >
         </activity>
-
+        <activity
+            android:name=".TournamentTeamsList"
+            >
+        </activity>
     </application>
 
 </manifest>

@@ -75,10 +75,18 @@ public class Tournament implements Serializable {
 
     /**
      * For removing a team from a tournament
-     * @param toremove
+     * @param toRemove
      */
-    public void removeTeam(Team toremove){
-        teams.remove(toremove);
+    public void removeTeam(Team toRemove){
+        teams.remove(toRemove);
+    }
+
+    public int getNumTeams(){
+        return teams.size();
+    }
+
+    public ArrayList<Team> teamsList(){
+        return teams;
     }
 
     /**

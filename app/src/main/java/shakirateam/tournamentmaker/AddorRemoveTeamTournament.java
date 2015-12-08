@@ -1,10 +1,13 @@
 package shakirateam.tournamentmaker;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 /**
  * Created by Dylan on 2015-12-03.
@@ -47,7 +50,18 @@ public class AddorRemoveTeamTournament extends Activity {
 
         if(addOrRemove==1){
 
+            ArrayList<Team> team = (ArrayList<Team>)getIntent().getBundleExtra("extra").getSerializable("teams");
+            Tournament tournament = (Tournament) getIntent().getBundleExtra("extra").getSerializable("tournament");
+            Bundle extra = new Bundle();
+            extra.putSerializable("teams", team);
+            extra.putSerializable("tournament", tournament);
+            Intent intent = new Intent(getApplicationContext(), TournamentTeamsList.class);
 
+            intent.putExtra("extra", extra);
+
+
+            startActivity(intent);
+            finish();
         }
         else{
 
