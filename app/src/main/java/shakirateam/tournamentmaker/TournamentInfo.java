@@ -32,10 +32,7 @@ public class TournamentInfo extends Activity {
         setContentView(R.layout.activity_tournament_info);
 
         Bundle extra = getIntent().getBundleExtra("extra");
-
         tournaments = (ArrayList<Tournament>) extra.getSerializable("tournamentsList");
-
-
 
         tournamentName=getIntent().getStringExtra("selectedTournament");
         TournamentName = Integer.parseInt(tournamentName);

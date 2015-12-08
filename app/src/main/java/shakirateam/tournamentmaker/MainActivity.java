@@ -21,6 +21,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<Team> teams = new ArrayList<Team>();
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,14 +29,7 @@ public class MainActivity extends AppCompatActivity {
 
         // When implementing the real code, the ListAdapter will take values from Tourney Instances
 
-        Button plus = (Button) findViewById(R.id.create);
 
-        plus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, CreationChooser.class));
-            }
-        });
 
         String TESTtypeOfTournament[] = {
                 "Knockout",
@@ -60,18 +54,18 @@ public class MainActivity extends AppCompatActivity {
                 "321",
         };
         Team TESTteams[]={
-           new Team("Team1","ic_logo_01",true),
-           new Team("Team2","ic_logo_02",false),
-           new Team("Team3","ic_logo_03",false),
+           new Team("Team1", R.drawable.ic_logo_01,true),
+           new Team("Team2", R.drawable.ic_logo_02,false),
+           new Team("Team3", R.drawable.ic_logo_03,false),
 
         };
 
-        ArrayList<Team> testteams = new ArrayList<Team>();
-            testteams.add(TESTteams[0]);
-            testteams.add(TESTteams[1]);
-            testteams.add(TESTteams[2]);
 
-        teams=testteams;
+            teams.add(TESTteams[0]);
+            teams.add(TESTteams[1]);
+            teams.add(TESTteams[2]);
+
+
 
         String numberOfTeams[] = {"Teams Registered: 2", "Teams Registered: 3",
                 "Teams Registered: 6"} ;
@@ -79,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         //input Test values for 3 tournaments
     for(int i=0;i<3;i++) {
 
-         tournaments.add(new Tournament(TESTtypeOfTournament[i],TESTgenders[i],TESTactives[i],TESTpasswords[i],testteams));
+         tournaments.add(new Tournament(TESTtypeOfTournament[i],TESTgenders[i],TESTactives[i],TESTpasswords[i],teams));
     }
 
 
@@ -100,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(found==true){
-           tournaments = readTournamentFile(tournamentsfile);
+          // tournaments = readTournamentFile(tournamentsfile);
         }
         else{
 
@@ -112,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         writeTeamFile();
-
 
 
 
@@ -163,7 +156,7 @@ public class MainActivity extends AppCompatActivity {
     public void openTournamentInfo(int TPicked) {
         String TPickedstr= String.valueOf(TPicked);
         Bundle extra = new Bundle();
-        extra.putSerializable("tournamentsList", tournaments );
+        extra.putSerializable("tournamentsList", tournaments);
 
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
         intent.putExtra("selectedTournament",TPickedstr);
@@ -174,18 +167,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openTournamentCreator(View view) {
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments);
+        Bundle extra2 = new Bundle();
+        extra2.putSerializable("teamsList", teams );
 
+        Intent intent = new Intent(getApplicationContext(), TournamentCreator.class); //Application Context and Activity
+        intent.putExtra("extra",extra);
+        intent.putExtra("extra2",extra2);
 
-        Intent intent = new Intent(getApplicationContext(), CreationChooser.class); //Application Context and Activity
-        startActivityForResult(intent, 0);
+        startActivityForResult(intent, 1);
 
     }
 
     public void openTeams(View view) {
-
+        Bundle extra = new Bundle();
+        extra.putSerializable("teamsList", teams);
 
         Intent intent = new Intent(getApplicationContext(), Teams.class); //Application Context and Activity
-        startActivityForResult(intent, 0);
+        intent.putExtra("extra",extra);
+
+        startActivityForResult(intent, 2);
 
     }
 
@@ -253,14 +255,16 @@ public class MainActivity extends AppCompatActivity {
             Scanner scanner = new Scanner(file);
             scanner.useDelimiter(":");
 
-            String name, gender, logo;
+            String name, gender, logostr;
+            int logo;
 
             Boolean g;
             Boolean exit = false;
             while(scanner.hasNext()) {
 
                 name = scanner.next();
-                logo = scanner.next();
+                logostr = scanner.next();
+                logo=Integer.parseInt(logostr);
                 gender = scanner.next();
                 if (gender.equals("male"))
                     g = true;
@@ -322,17 +326,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_CANCELED) return;
 
-        if (requestCode == 0) {
+        super.onActivityResult(requestCode, resultCode, data);
 
-        }
         if (requestCode == 1) {
+            Bundle extra = data.getBundleExtra("extra");
+            tournaments = (ArrayList<Tournament>) extra.getSerializable("tournamentsList");
+            updateTournamentList(tournaments);
 
         }
         if (requestCode == 2) {
+            Bundle extra = data.getBundleExtra("extra");
+            teams = (ArrayList<Team>) extra.getSerializable("teamsList");
+
 
         }
+
 
 
 

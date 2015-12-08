@@ -20,7 +20,7 @@ public class Tournament implements Serializable {
      * @param gender Gender of the tournament
      * @param password Password to be inputted in order to change settings
      */
-    public Tournament(String type, boolean gender, String password){
+    public Tournament(String type, boolean gender,boolean active, String password){
         Gender = gender;
         TOURNAMENT_TYPE = type;
         this.password = password;

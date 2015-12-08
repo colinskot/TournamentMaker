@@ -7,12 +7,12 @@ import java.io.Serializable;
  */
 public class Team  implements Serializable {
     private String name;
-    private String logo;
+    private int logo;
     Boolean Gender;
     static private int sharedid = 0;
     private int id;
 
-    public Team (String name, String logo, Boolean gender){
+    public Team (String name, int logo, Boolean gender){
         this.name = name;
         this.logo = logo;
         this.Gender = gender;
@@ -27,10 +27,10 @@ public class Team  implements Serializable {
         this.name = name;
     }
 
-    public String getLogo(){
+    public int getLogo(){
         return logo;
     }
-    public void setLogo(String logo){
+    public void setLogo(int logo){
         this.logo = logo;
     }
 

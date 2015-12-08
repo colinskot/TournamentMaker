@@ -9,6 +9,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -21,62 +22,36 @@ public class Teams extends Activity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_teams);
 
-        String listOfTeamNames[] = new String[]{
-                "Team 1",
-                "Team 2",
-                "Team 3",
-                "Team 4",
-                "Team 5",
-                "Team 6",
-                "Team 7",
-                "Team 8",
-                "Team 9",
-                "Team 10",
-                "Team 11",
-                "Team 12"
-        };
 
-        String genders[] = new String[] {
-                "Male",
-                "Female",
-                "Female",
-                "Male",
-                "Male",
-                "Male",
-                "Female",
-                "Male",
-                "Female",
-                "Female",
-                "Male",
-                "Female"
-        };
+        Bundle extra = getIntent().getBundleExtra("extra");
+        teams = (ArrayList<Team>) extra.getSerializable("teamsList");
 
-        int teamlogos[] = new int[] {
-                R.drawable.ic_logo_00,
-                R.drawable.ic_logo_01,
-                R.drawable.ic_logo_02,
-                R.drawable.ic_logo_03,
-                R.drawable.ic_logo_04,
-                R.drawable.ic_logo_05,
-                R.drawable.ic_logo_00,
-                R.drawable.ic_logo_01,
-                R.drawable.ic_logo_02,
-                R.drawable.ic_logo_03,
-                R.drawable.ic_logo_04,
-                R.drawable.ic_logo_05
-        };
+        updateTeamList(teams);
 
 
 
+    }
+
+    public void updateTeamList(ArrayList<Team> newTeamList) {
 
         // Each row in the list stores country name, currency and flag
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
 
-        for(int i=0;i<12;i++){
+        for(int i=0;i<teams.size();i++){
             HashMap<String, String> hm = new HashMap<String,String>();
-            hm.put("name", listOfTeamNames[i]);
-            hm.put("gender", genders[i]);
-            hm.put("logo", Integer.toString(teamlogos[i]) );
+            hm.put("name", String.valueOf(teams.get(i).getName()));
+            String Gender;
+
+            if(teams.get(i).getGender()==true){
+                Gender="Mens";
+
+            }
+            else{
+                Gender="Womens";
+            }
+
+            hm.put("gender", Gender);
+            hm.put("logo", String.valueOf(teams.get(i).getLogo()) );
             aList.add(hm);
         }
 
@@ -95,12 +70,46 @@ public class Teams extends Activity{
 
         // Setting the adapter to the listView
         listView.setAdapter(adapterT);
-    }
+
+
+        Bundle extra = new Bundle();
+        extra.putSerializable("teamsList", teams);
+
+        Intent intent = new Intent(getApplicationContext(), Teams.class); //Application Context and Activity
+        intent.putExtra("extra", extra);
+        setResult(0, intent);
+   }
+
+
     public void openTeamCreator(View view) {
 
-
-        Intent intent = new Intent(getApplicationContext(), CreationChooser.class); //Application Context and Activity
+        Bundle extra = new Bundle();
+        extra.putSerializable("teamsList", teams);
+        Intent intent = new Intent(getApplicationContext(), teamcreator.class); //Application Context and Activity
+        intent.putExtra("extra",extra);
         startActivityForResult(intent, 0);
+
+    }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+        Bundle extra = data.getBundleExtra("extra");
+        teams = (ArrayList<Team>) extra.getSerializable("teamsList");
+        updateTeamList(teams);
+
+
+
+
+
+
+
+
+
+
+
 
     }
 }

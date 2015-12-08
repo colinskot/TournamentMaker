@@ -7,15 +7,26 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
+import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * Created by Mark on 2015-11-24.
  */
 public class TournamentCreator extends Activity{
 
+    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
+    String type;
+    String passwordstring;
+    boolean gender;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Bundle extra = getIntent().getBundleExtra("extra");
+        tournaments=(ArrayList<Tournament>) extra.getSerializable("tournamentsList");
 
         setContentView(R.layout.tournamentcreator);
 
@@ -27,37 +38,59 @@ public class TournamentCreator extends Activity{
         final RadioGroup tournamentgender = (RadioGroup) findViewById(R.id.radioGroup3);
 
 
+
+
+
         confirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Tournament t;
-
                 int typeid = tournamenttype.getCheckedRadioButtonId();
 
-                String type;
+                passwordstring= password.getText().toString();
 
-                if (typeid == R.id.radioButton2)
+                if (typeid == R.id.radioButton2) {
                     type = "Knockout";
-                else if (typeid == R.id.radioButton)
+                }
+                else if (typeid == R.id.radioButton){
                     type = "RoundRobin";
-                else
+                }
+
+                else {
                     type = "Combination";
+                }
 
-                boolean gender;
 
-                if (tournamentgender.getCheckedRadioButtonId() == R.id.male_radio)
+                if (tournamentgender.getCheckedRadioButtonId() == R.id.male_radio) {
                     gender = true;
-                else
+                }
+                else {
                     gender = false;
+                }
+
+                CreateTournament();
 
 
-                t = new Tournament(type, gender, password.getText().toString());
-                startActivity(new Intent(TournamentCreator.this, MainActivity.class));
-                finish();
             }
         });
     }
 
+    public void CreateTournament(){
+
+        Toast.makeText(TournamentCreator.this, tournaments.get(1).getType(), Toast.LENGTH_SHORT).show();
+
+        tournaments.add(new Tournament(type, gender, false, passwordstring));
+
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournamentsList", tournaments);
+
+        Intent iData = new Intent();
+        iData.putExtra("extra",extra);
+
+        setResult(0,iData);
+
+
+        finish();
+    }
 
 }
