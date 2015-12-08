@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,9 +24,10 @@ public class TournamentTeamsList extends Activity{
     public void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.teams_noplus_layout);
+        Bundle extra = getIntent().getExtras();
+        tournament = (Tournament) extra.getSerializable("tournament");
+        teams = (ArrayList<Team>) extra.getSerializable("team");
 
-        tournament = (Tournament) getIntent().getBundleExtra("extra").get("tournament");
-        teams = (ArrayList<Team>) getIntent().getBundleExtra("extra").get("teams");
 
         ListView listView = ( ListView ) findViewById(R.id.listview);
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
@@ -76,13 +78,14 @@ public class TournamentTeamsList extends Activity{
                 public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
 
                     //String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position));
+                    Toast.makeText(getApplicationContext(), teams.get(position).toString(), Toast.LENGTH_LONG).show();
                     tournament.addTeam(teams.get(position));
                     Bundle extra = new Bundle();
                     extra.putSerializable("tournament", tournament);
                     Intent intent = new Intent(TournamentTeamsList.this, TournamentInfo.class);
                     intent.putExtra("tournament", extra);
 
-                    //startActivityForResult(intent, 9);
+                    setResult(RESULT_OK, intent);
                     finish();
                 }
             });

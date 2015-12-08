@@ -12,7 +12,8 @@
         android:layout_alignParentTop="false"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
-        android:layout_alignWithParentIfMissing="false" />
+        android:layout_alignWithParentIfMissing="false"
+        android:onClick="onClick" />
 
     <ImageButton
         android:id="@+id/imageButton"
@@ -23,7 +24,9 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/myButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onClick"
+        android:nestedScrollingEnabled="false" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -34,7 +37,9 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/imageButton"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="onClick"
+        android:nestedScrollingEnabled="false" />
 
     <ImageButton
         android:id="@+id/imageButton3"
@@ -48,7 +53,9 @@
         android:layout_alignParentEnd="true"
         android:layout_above="@+id/imageButton"
         android:layout_alignLeft="@+id/imageButton4"
-        android:layout_alignStart="@+id/imageButton4" />
+        android:layout_alignStart="@+id/imageButton4"
+        android:onClick="onClick"
+        android:nestedScrollingEnabled="false" />
 
     <ImageButton
         android:id="@+id/imageButton4"
@@ -59,7 +66,9 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/imageButton3"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="onClick"
+        android:nestedScrollingEnabled="false" />
 
     <ImageButton
         android:id="@+id/imageButton5"
@@ -69,84 +78,9 @@
         android:src="@drawable/ic_logo_05"
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/imageButton4"
-        android:layout_toRightOf="@+id/imageradiogroup"
-        android:layout_toEndOf="@+id/imageradiogroup" />
-
-    <RadioGroup
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/myButton"
-        android:layout_toLeftOf="@+id/imageButton3"
-        android:id="@+id/imageradiogroup">
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton8"
-            android:checked="false"
-            android:layout_marginTop="51dp"
-            android:layout_below="@+id/imageButton3"
-            android:layout_toLeftOf="@+id/imageButton4"
-            android:layout_toStartOf="@+id/imageButton4" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton9"
-            android:checked="false"
-            android:layout_below="@+id/imageButton"
-            android:layout_toRightOf="@+id/imageButton2"
-            android:layout_toEndOf="@+id/imageButton2"
-            android:layout_marginTop="50dp" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/radioButton7"
-            android:checked="false"
-            android:layout_alignTop="@+id/radioButton9"
-            android:layout_toLeftOf="@+id/imageButton5"
-            android:layout_toStartOf="@+id/imageButton5" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton4"
-            android:checked="false"
-            android:layout_marginTop="47dp"
-            android:layout_alignParentTop="true"
-            android:layout_toLeftOf="@+id/imageButton3"
-            android:layout_toStartOf="@+id/imageButton3" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton5"
-            android:checked="false"
-            android:layout_alignTop="@+id/radioButton4"
-            android:layout_toRightOf="@+id/myButton"
-            android:layout_toEndOf="@+id/myButton" />
-
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/radioButton6"
-            android:checked="false"
-            android:layout_alignTop="@+id/radioButton8"
-            android:layout_toRightOf="@+id/imageButton"
-            android:layout_toEndOf="@+id/imageButton" />
-    </RadioGroup>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Confirm"
-        android:id="@+id/imageselectconfirm"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/imageButton5"
-        android:layout_alignEnd="@+id/imageButton5"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignLeft="@+id/imageButton4"
+        android:layout_alignStart="@+id/imageButton4"
+        android:onClick="onClick"
+        android:nestedScrollingEnabled="false" />
 
 </RelativeLayout>

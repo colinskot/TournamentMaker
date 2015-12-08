@@ -7,6 +7,8 @@ import android.app.Activity;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 /**
  * Created by Dylan on 2015-12-04.
  */
@@ -54,10 +56,13 @@ public class PasswordCheck extends Activity {
             }
             else if(whatToOpen==2){
                 //open Add Team
+                Bundle extra = getIntent().getBundleExtra("extra");
+                ArrayList<Team> teams = (ArrayList<Team>) extra.getSerializable("teams");
+
                 Intent intent = new Intent(getApplicationContext(), TournamentTeamsList.class); //Application Context and Activity
                 intent.putExtra("AddorRemove",addOrRemoveStr);
-                intent.putExtra("team", getIntent().getBundleExtra("team"));
-                intent.putExtra("extra", getIntent().getBundleExtra("extra"));
+                intent.putExtra("team", teams);
+                intent.putExtra("tournament", extra.getSerializable("tournament"));
                 startActivityForResult(intent, 0);
                 finish();
 

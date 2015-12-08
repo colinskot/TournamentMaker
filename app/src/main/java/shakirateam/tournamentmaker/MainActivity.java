@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -328,20 +330,29 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            if (requestCode == 1) {
+                Bundle extra = data.getBundleExtra("extra");
+                tournaments = (ArrayList<Tournament>) extra.getSerializable("tournamentsList");
+                updateTournamentList(tournaments);
 
-        if (requestCode == 1) {
-            Bundle extra = data.getBundleExtra("extra");
-            tournaments = (ArrayList<Tournament>) extra.getSerializable("tournamentsList");
-            updateTournamentList(tournaments);
+            }
+            if (requestCode == 2) {
+                Bundle extra = data.getBundleExtra("extra");
+                teams = (ArrayList<Team>) extra.getSerializable("teamsList");
 
+
+            }
+        }else{
+            if (data != null){
+                if (data.getExtras().containsKey("extra")){
+                    //Toast.makeText(getApplicationContext(), Integer.toString(teams.size()), Toast.LENGTH_LONG).show();
+                    Bundle extra = data.getBundleExtra("extra");
+                    teams = (ArrayList<Team>) extra.getSerializable("teamsList");
+                    Toast.makeText(getApplicationContext(), Integer.toString(teams.size()), Toast.LENGTH_LONG).show();
+                }
+            }
         }
-        if (requestCode == 2) {
-            Bundle extra = data.getBundleExtra("extra");
-            teams = (ArrayList<Team>) extra.getSerializable("teamsList");
-
-
-        }
-
 
 
 

@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -38,7 +39,7 @@ public class TournamentInfo extends Activity {
 
         tournament = (Tournament) extra.getSerializable("tournament");
         teams = tournament.teamsList();
-
+        totalTeams = (ArrayList<Team>) extra.getSerializable("teams");
 
 
         tournamentName="Tournament";
@@ -135,7 +136,7 @@ public class TournamentInfo extends Activity {
         Bundle extra = new Bundle();
         Bundle team = new Bundle();
         extra.putSerializable("tournament", tournament);
-        extra.putSerializable("teams", teams);
+        extra.putSerializable("teams", totalTeams);
 
         String whattodo= String.valueOf(2);
 
@@ -144,7 +145,7 @@ public class TournamentInfo extends Activity {
         Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("WHATTODO",whattodo);
         intent.putExtra("AddorRemove",numstr);
-        intent.putExtra("extra",extra);
+        intent.putExtra("extra", extra);
         //intent.putExtra("team", team);
 
         startActivityForResult(intent, 0);
@@ -175,7 +176,7 @@ public class TournamentInfo extends Activity {
         if (btn.getText().toString().equals("View Teams")){
             intent =  new Intent(TournamentInfo.this, TournamentTeamsList.class);
             extra = new Bundle();
-            extra.putSerializable("tournament", tournament);
+            extra.putSerializable("team", totalTeams);
 
             intent.putExtra("extra", extra);
             startActivityForResult(intent, 0);
@@ -191,7 +192,16 @@ public class TournamentInfo extends Activity {
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_CANCELED) return;
+        if (resultCode == RESULT_CANCELED){
+            if (data != null) {
+                if (data.getExtras().containsKey("extra")) {
+                    Bundle extra = data.getBundleExtra("extra");
+                    tournament = (Tournament) extra.getSerializable("tournament");
+                    Toast.makeText(getApplicationContext(), Integer.toString(tournament.getNumTeams()), Toast.LENGTH_LONG).show();
+                }
+            }
+
+        }
 
         if (requestCode == 0) {
 
@@ -205,9 +215,6 @@ public class TournamentInfo extends Activity {
         if (requestCode == 9){
             tournament = (Tournament) getIntent().getBundleExtra("extra").getSerializable("tournament");
         }
-
-
-
 
 
 

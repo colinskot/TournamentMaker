@@ -95,10 +95,16 @@ public class Teams extends Activity{
 
         super.onActivityResult(requestCode, resultCode, data);
 
+        if (resultCode == RESULT_OK) {
 
-        Bundle extra = data.getBundleExtra("extra");
-        teams = (ArrayList<Team>) extra.getSerializable("teamsList");
-        updateTeamList(teams);
+
+
+            if (data != null) {
+                Bundle extra = data.getBundleExtra("extra");
+                teams = (ArrayList<Team>) extra.getSerializable("teamsList");
+                updateTeamList(teams);
+            }
+        }
 
 
 

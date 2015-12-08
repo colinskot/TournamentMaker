@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 /**
  * Created by Mark on 2015-12-03.
@@ -28,41 +29,52 @@ public class ImageChooser extends Activity{
 
         getWindow().setLayout(width - 20, height);
 
-        final RadioGroup rd = (RadioGroup) findViewById(R.id.imageradiogroup);
-
-        Button confirm = (Button) findViewById(R.id.imageselectconfirm);
-
-        confirm.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(ImageChooser.this, teamcreator.class);
-
-                int id = rd.getCheckedRadioButtonId();
-                String image = null;
-                ImageView im = (ImageView) findViewById(R.id.imageView);
-
-                if (id == R.id.radioButton7)
-                    image = "ic_logo_00";
-                else if (id == R.id.radioButton8)
-                    image = "ic_logo_00";
-                else if (id == R.id.radioButton9)
-                    image = "ic_logo_00";
-                else if (id == R.id.radioButton6)
-                    image = "ic_logo_00";
-                else if (id == R.id.radioButton5)
-                    image = "ic_logo_00";
-                else if (id == R.id.radioButton4)
-                    image = "ic_logo_00";
-
-                if (image != null){
-                    startActivity(intent.putExtra(image, image));
-                }
-
-            }
-        });
 
 
+    }
+
+
+    public void onClick(View v) {
+
+        Intent intent = new Intent(getApplicationContext(), teamcreator.class);
+
+        //int id = rd.getCheckedRadioButtonId();
+        String image = null;
+        ImageView im = (ImageView) findViewById(R.id.imageView);
+
+        switch (v.getId()) {
+            case R.id.myButton:
+                intent.putExtra("image", Integer.toString(R.drawable.ic_logo_00));
+                setResult(RESULT_OK, intent);
+                //Toast.makeText(this, intent.getExtras().getString("image"), Toast.LENGTH_LONG).show();
+                finish();
+                break;
+            case R.id.imageButton:
+                intent.putExtra("image", Integer.toString(R.drawable.ic_logo_02));
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+            case R.id.imageButton2:
+                intent.putExtra("image", Integer.toString(R.drawable.ic_logo_04));
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+            case R.id.imageButton3:
+                intent.putExtra("image", Integer.toString(R.drawable.ic_logo_01));
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+            case R.id.imageButton4:
+                intent.putExtra("image", Integer.toString(R.drawable.ic_logo_03));
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+            case R.id.imageButton5:
+                intent.putExtra("image", Integer.toString(R.drawable.ic_logo_05));
+                setResult(RESULT_OK, intent);
+                finish();
+                break;
+        }
 
     }
 }

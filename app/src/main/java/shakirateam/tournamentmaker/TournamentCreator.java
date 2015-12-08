@@ -87,7 +87,7 @@ public class TournamentCreator extends Activity{
         Intent iData = new Intent();
         iData.putExtra("extra",extra);
 
-        setResult(0,iData);
+        setResult(RESULT_OK,iData);
 
 
         finish();
