@@ -37,7 +37,7 @@ public class TournamentInfo extends Activity {
         //Bundle team = getIntent().getBundleExtra("team");
 
         tournament = (Tournament) extra.getSerializable("tournament");
-        teams = (ArrayList<Team>) extra.getSerializable("teams");
+        teams = tournament.teamsList();
 
 
 

@@ -43,7 +43,7 @@ public class TournamentTeamsList extends Activity{
                     gender[i] = "Male";
                 else
                     gender[i] = "Female";
-                logos[i] = 0;
+                logos[i] = teams.get(i).getLogo();
             }
 
 
@@ -82,7 +82,7 @@ public class TournamentTeamsList extends Activity{
                     Intent intent = new Intent(TournamentTeamsList.this, TournamentInfo.class);
                     intent.putExtra("tournament", extra);
 
-                    startActivityForResult(intent, 9);
+                    //startActivityForResult(intent, 9);
                     finish();
                 }
             });
@@ -134,7 +134,7 @@ public class TournamentTeamsList extends Activity{
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0){
             teams = null;
-            teams = ((Tournament)getIntent().getBundleExtra("extra").getSerializable("teams")).teamsList();
+            teams = ((Tournament)getIntent().getBundleExtra("extra").getSerializable("tournament")).teamsList();
             refreshTeamsList(teams);
         }
     }
