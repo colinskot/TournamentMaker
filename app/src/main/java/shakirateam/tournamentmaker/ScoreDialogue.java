@@ -20,8 +20,7 @@ public class ScoreDialogue extends Activity{
 
         setContentView(R.layout.score_popup);
 
-        Button btnConfirmScore = (Button) findViewById(R.id.confirmDialogue);
-        btnConfirmScore.setEnabled(false);
+        //Button btnConfirmScore = (Button) findViewById(R.id.confirmDialogue);
 
         final EditText score1 = (EditText) findViewById(R.id.score1);
         final EditText score2 = (EditText) findViewById(R.id.score2);
@@ -32,7 +31,7 @@ public class ScoreDialogue extends Activity{
         int width = dm.widthPixels;
         int height = dm.heightPixels;
 
-        getWindow().setLayout(width - 500, (height / 3) - 60);
+        getWindow().setLayout(width - 500, (height));
     }
 
     public void openConfirmDialogue(View view) {

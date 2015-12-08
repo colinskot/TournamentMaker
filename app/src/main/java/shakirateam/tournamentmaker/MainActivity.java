@@ -63,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
         };
 
 
-            teams.add(TESTteams[0]);
+            //teams.add(TESTteams[0]);
             teams.add(TESTteams[1]);
             teams.add(TESTteams[2]);
 
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if(found==true){
-          // tournaments = readTournamentFile(tournamentsfile);
+          tournaments = readTournamentFile(tournamentsfile);
         }
         else{
 
@@ -159,7 +159,9 @@ public class MainActivity extends AppCompatActivity {
         String TPickedstr= String.valueOf(TPicked);
         Bundle extra = new Bundle();
         extra.putSerializable("tournament", tournaments.get(TPicked));
+        //tournaments.remove(TPicked);
         extra.putSerializable("teams", teams);
+        extra.putString("TPicked", Integer.toString(TPicked));
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
 
         intent.putExtra("extra",extra);
@@ -294,7 +296,7 @@ public class MainActivity extends AppCompatActivity {
         String file = "tournaments.txt";
         try {
             FileOutputStream outputStream = openFileOutput(file, Context.MODE_PRIVATE);
-            for (int i = 0; i <=(tournaments.size()); i++){
+            for (int i = 0; i <(tournaments.size()); i++){
                 outputStream.write((tournaments.get(i).toString()).getBytes());
 
             }
@@ -312,7 +314,7 @@ public class MainActivity extends AppCompatActivity {
         String file = "teams.txt";
         try {
             FileOutputStream outputStream = openFileOutput(file, Context.MODE_PRIVATE);
-            for (int i = 0; i <=(teams.size()); i++){
+            for (int i = 0; i <(teams.size()); i++){
                 outputStream.write((teams.get(i).toString()).getBytes());
 
             }
@@ -344,12 +346,20 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }else{
-            if (data != null){
-                if (data.getExtras().containsKey("extra")){
-                    //Toast.makeText(getApplicationContext(), Integer.toString(teams.size()), Toast.LENGTH_LONG).show();
-                    Bundle extra = data.getBundleExtra("extra");
-                    teams = (ArrayList<Team>) extra.getSerializable("teamsList");
-                    Toast.makeText(getApplicationContext(), Integer.toString(teams.size()), Toast.LENGTH_LONG).show();
+            if (requestCode == 0 && data != null){
+                Bundle extra = data.getBundleExtra("extra");
+                int TPicked = Integer.parseInt(extra.getString("TPicked"));
+                Tournament t = (Tournament) extra.getSerializable("tournament");
+                tournaments.set(TPicked, t);
+                //System.out.println(data.getExtras().toString());
+            }else{
+                if (data != null) {
+                    if (data.getExtras().containsKey("extra")) {
+                        //Toast.makeText(getApplicationContext(), Integer.toString(teams.size()), Toast.LENGTH_LONG).show();
+                        Bundle extra = data.getBundleExtra("extra");
+                        teams = (ArrayList<Team>) extra.getSerializable("teamsList");
+                        Toast.makeText(getApplicationContext(), Integer.toString(teams.size())+" teams total", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         }

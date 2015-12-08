@@ -15,7 +15,7 @@ import android.widget.Toast;
 public class Games extends Activity{
 
 
-        String tournamentName="Tournament Games";
+        /*String tournamentName="Tournament Games";
                 String listOfTeamNames1[] = new String[]{
                 "Team 1",
                 "Team 2",
@@ -73,15 +73,24 @@ public class Games extends Activity{
                 R.drawable.ic_logo_03,
                 R.drawable.ic_logo_04,
                 R.drawable.ic_logo_05
-        };
+        };*/
 
-
+        ArrayList<Game> games = new ArrayList<>();
+        Knockout knockout;
+        Tournament tournament;
         @Override
         public void onCreate(Bundle savedInstanceState) {
-                super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_games);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_games);
 
-                tournamentName=getIntent().getStringExtra("selectedTournament");
+            Bundle extra = getIntent().getBundleExtra("extra");
+
+            tournament = (Tournament) extra.getSerializable("tournament");
+            knockout = new Knockout(tournament.teamsList());
+            games = knockout.getCurrentStandings();
+
+            extra = new Bundle();
+
 
                createUserInterface();
 
@@ -89,12 +98,12 @@ public class Games extends Activity{
         }
 
         public void createUserInterface() {
-                ArrayList<CustomGameItem> gameItems = new ArrayList<CustomGameItem>();
+                ArrayList<CustomGameItem> gameItems = new ArrayList<>();
 
 
                 // Add all the values into the array list
-                for(int i = 0; i < listOfTeamNames1.length; i++) {
-                        gameItems.add(new CustomGameItem(listOfTeamNames1[i], listOfTeamNames2[i], teamlogos1[i],teamlogos2[i]));
+                for(Game g : games) {
+                        gameItems.add(new CustomGameItem(g.getFirstTeam().getName(), g.getSecondTeam().getName(), g.getFirstTeam().getLogo(),g.getSecondTeam().getLogo()));
                 }
 
 
@@ -109,7 +118,7 @@ public class Games extends Activity{
                 listView.setAdapter(adapter);
 
                 TextView tournamentTitle = (TextView ) findViewById(R.id.tournamentGamesTitle);
-                tournamentTitle.setText("Tournament "+tournamentName+" Games");
+                tournamentTitle.setText("Tournament" + " Games");
         }
 
         public void openScoreDialogue(View view) {

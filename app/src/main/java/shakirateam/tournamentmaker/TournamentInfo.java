@@ -21,6 +21,7 @@ public class TournamentInfo extends Activity {
     private ArrayList<Team> totalTeams;
     String tournamentName="Tournament Name";
     int TournamentName=0;
+    int tournamentIndex;
     String tournamentType="Type";
     String tournamentGender="Gender";
     boolean tournamentActiveboolean=false;
@@ -40,7 +41,7 @@ public class TournamentInfo extends Activity {
         tournament = (Tournament) extra.getSerializable("tournament");
         teams = tournament.teamsList();
         totalTeams = (ArrayList<Team>) extra.getSerializable("teams");
-
+        tournamentIndex = Integer.parseInt(extra.getString("TPicked"));
 
         tournamentName="Tournament";
         //TournamentName = Integer.parseInt(tournamentName);
@@ -97,7 +98,7 @@ public class TournamentInfo extends Activity {
 
             Button btnStart = (Button) findViewById(R.id.btnStart);
             btnStart.setEnabled(false);
-
+            tournament.setActive(true);
             btnStart.setText("Started");
         }
         else {
@@ -115,7 +116,10 @@ public class TournamentInfo extends Activity {
 
         tournamentActiveboolean=true;
         checkActiveTournament();
-
+        Bundle extra = new Bundle();
+        extra.putSerializable("tournament", tournament);
+        extra.putString("TPicked", Integer.toString(tournamentIndex));
+        setResult(RESULT_CANCELED ,getIntent().putExtra("extra", extra));
     }
     public void onClickDelete(View view) {
         String whattodo= String.valueOf(1);
@@ -176,8 +180,8 @@ public class TournamentInfo extends Activity {
         if (btn.getText().toString().equals("View Teams")){
             intent =  new Intent(TournamentInfo.this, TournamentTeamsList.class);
             extra = new Bundle();
-            extra.putSerializable("team", totalTeams);
-
+            extra.putSerializable("tournament", tournament);
+            extra.putSerializable("whatList", Integer.toString(-1));
             intent.putExtra("extra", extra);
             startActivityForResult(intent, 0);
         }else {
@@ -193,30 +197,35 @@ public class TournamentInfo extends Activity {
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_CANCELED){
-            if (data != null) {
-                if (data.getExtras().containsKey("extra")) {
-                    Bundle extra = data.getBundleExtra("extra");
-                    tournament = (Tournament) extra.getSerializable("tournament");
-                    Toast.makeText(getApplicationContext(), Integer.toString(tournament.getNumTeams()), Toast.LENGTH_LONG).show();
+
+
+        }else {
+
+
+            if (requestCode == 0) {
+                if (data != null) {
+                    if (data.getExtras().containsKey("extra")) {
+                        Bundle extra = data.getBundleExtra("extra");
+                        tournament = (Tournament) extra.getSerializable("tournament");
+                        teams = tournament.teamsList();
+                    }
                 }
+                Bundle extra = new Bundle();
+                extra.putSerializable("tournament", tournament);
+                extra.putString("TPicked", Integer.toString(tournamentIndex));
+                setResult(RESULT_CANCELED ,getIntent().putExtra("extra", extra));
+            }
+            if (requestCode == 1) {
+
+            }
+            if (requestCode == 2) {
+
+            }
+            if (requestCode == 9) {
+                tournament = (Tournament) getIntent().getBundleExtra("extra").getSerializable("tournament");
             }
 
         }
-
-        if (requestCode == 0) {
-
-        }
-        if (requestCode == 1) {
-
-        }
-        if (requestCode == 2) {
-
-        }
-        if (requestCode == 9){
-            tournament = (Tournament) getIntent().getBundleExtra("extra").getSerializable("tournament");
-        }
-
-
 
     }
 

@@ -24,17 +24,19 @@ public class TournamentTeamsList extends Activity{
     public void onCreate(Bundle savedInstance){
         super.onCreate(savedInstance);
         setContentView(R.layout.teams_noplus_layout);
-        Bundle extra = getIntent().getExtras();
+
+
+        Bundle extra = getIntent().getBundleExtra("extra");
         tournament = (Tournament) extra.getSerializable("tournament");
         teams = (ArrayList<Team>) extra.getSerializable("team");
-
+        int action = Integer.parseInt(extra.getString("whatList"));
 
         ListView listView = ( ListView ) findViewById(R.id.listview);
         List<HashMap<String,String>> aList = new ArrayList<HashMap<String,String>>();
         String names[];
         int logos[];
         String gender[];
-        if (teams != null) {
+        if (teams != null && action == 2) {
             names = new String[teams.size()];
             logos = new int[teams.size()];
             gender = new String[teams.size()];
@@ -49,8 +51,10 @@ public class TournamentTeamsList extends Activity{
             }
 
 
+
             for (int i = 0; i < teams.size(); i++) {
                 HashMap<String, String> hm = new HashMap<String, String>();
+
                 if (teams.get(i).getGender() == tournament.getGender()) {
                     hm.put("name", names[i]);
                     hm.put("gender", gender[i]);
@@ -77,18 +81,56 @@ public class TournamentTeamsList extends Activity{
                 @Override
                 public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
 
-                    //String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position));
-                    Toast.makeText(getApplicationContext(), teams.get(position).toString(), Toast.LENGTH_LONG).show();
+
                     tournament.addTeam(teams.get(position));
                     Bundle extra = new Bundle();
                     extra.putSerializable("tournament", tournament);
-                    Intent intent = new Intent(TournamentTeamsList.this, TournamentInfo.class);
-                    intent.putExtra("tournament", extra);
-
+                    Intent intent = new Intent(TournamentTeamsList.this, PasswordCheck.class);
+                    intent.putExtra("extra", extra);
                     setResult(RESULT_OK, intent);
                     finish();
                 }
             });
+        }else if (action == -1){
+
+            ArrayList<Team> team = tournament.teamsList();
+            names = new String[team.size()];
+            logos = new int[team.size()];
+            gender = new String[team.size()];
+
+            for (int i = 0; i < team.size(); i++) {
+                names[i] = team.get(i).getName();
+                if (team.get(i).getGender())
+                    gender[i] = "Male";
+                else
+                    gender[i] = "Female";
+                logos[i] = team.get(i).getLogo();
+            }
+
+
+            for (int i = 0; i < team.size(); i++) {
+                HashMap<String, String> hm = new HashMap<String, String>();
+
+                hm.put("name", names[i]);
+                hm.put("gender", gender[i]);
+                hm.put("logo", Integer.toString(logos[i]));
+
+                aList.add(hm);
+            }
+
+            // Keys used in Hashmap
+            String[] from = {"logo", "name", "gender"};
+
+            // Ids of views in listview_layout
+            int[] to = {R.id.logo, R.id.team, R.id.gender};
+
+            SimpleAdapter adapterT = new SimpleAdapter(getBaseContext(), aList, R.layout.teams_row_layout, from, to);
+
+            // Getting a reference to listview of main.xml layout file
+            //ListView listView = ( ListView ) findViewById(R.id.listview);
+
+            // Setting the adapter to the listView
+            listView.setAdapter(adapterT);
         }
     }
 

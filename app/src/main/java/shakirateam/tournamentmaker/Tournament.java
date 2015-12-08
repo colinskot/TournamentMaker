@@ -53,7 +53,9 @@ public class Tournament implements Serializable {
     public String getType(){
         return TOURNAMENT_TYPE;
     }
-
+    public String getPassword(){
+        return password;
+    }
     /**
      * Set the gender of the tournament (Should not really change, but just in case)
      * Resets the teams ArrayList

@@ -15,11 +15,13 @@ public class Knockout extends TournamentType implements Serializable {
     public Knockout(ArrayList<Team> teams){
 
         participatingTeams = teams;
+        int shifted = 0;
+        if (participatingTeams.size() % 2 == 1) {
+            nextStandings.add(new Game(participatingTeams.get(participatingTeams.size() - 1)));
+            shifted = 1;
+        }
 
-        if (participatingTeams.size() % 2 != 0)
-            nextStandings.add(new Game(participatingTeams.get(participatingTeams.size()-1)));
-
-        for (int i = 0;  i < participatingTeams.size(); i += 2){
+        for (int i = 0;  i < participatingTeams.size()-shifted; i += 2){
             currentStandings.add(new Game(participatingTeams.get(i), participatingTeams.get(i+1)));
         }
     }

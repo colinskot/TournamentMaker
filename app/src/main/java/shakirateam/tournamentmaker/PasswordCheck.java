@@ -14,6 +14,7 @@ import java.util.ArrayList;
  */
 public class PasswordCheck extends Activity {
 
+    Tournament tournament;
     String tournamentPassword="";
     String tournamentname="";
     int whatToOpen=0;
@@ -24,7 +25,9 @@ public class PasswordCheck extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passwordcheck_popup);
-
+        Bundle extra = getIntent().getBundleExtra("extra");
+        tournament = (Tournament) extra.getSerializable("tournament");
+        tournamentPassword = tournament.getPassword();
         if(getIntent().getStringExtra("AddorRemove")!=null) {
              addOrRemoveStr = getIntent().getStringExtra("AddorRemove");
 
@@ -58,13 +61,13 @@ public class PasswordCheck extends Activity {
                 //open Add Team
                 Bundle extra = getIntent().getBundleExtra("extra");
                 ArrayList<Team> teams = (ArrayList<Team>) extra.getSerializable("teams");
-
+                extra.putSerializable("team", teams);
+                extra.putString("whatList", Integer.toString(whatToOpen));
                 Intent intent = new Intent(getApplicationContext(), TournamentTeamsList.class); //Application Context and Activity
                 intent.putExtra("AddorRemove",addOrRemoveStr);
                 intent.putExtra("team", teams);
-                intent.putExtra("tournament", extra.getSerializable("tournament"));
+                intent.putExtra("extra", extra);
                 startActivityForResult(intent, 0);
-                finish();
 
 
             }
@@ -86,5 +89,22 @@ public class PasswordCheck extends Activity {
             Toast.makeText(PasswordCheck.this, "Incorrect Password", Toast.LENGTH_SHORT).show();
         }
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK){
+            Bundle extra = data.getBundleExtra("extra");
+            Tournament t = (Tournament) extra.getSerializable("tournament");
+            //Toast.makeText(getApplicationContext(), Integer.toString(t.getNumTeams()), Toast.LENGTH_LONG).show();
+            Intent intent = new Intent(this, TournamentInfo.class);
+            intent.putExtra("extra", extra);
+            setResult(RESULT_OK, intent);
+            finish();
+        }else{
+            finish();
+        }
     }
 }
