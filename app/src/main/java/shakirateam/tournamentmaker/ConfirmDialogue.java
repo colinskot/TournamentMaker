@@ -38,7 +38,7 @@ public class ConfirmDialogue extends Activity {
         String score1 = getIntent().getExtras().getString("score1");
         String score2 = getIntent().getExtras().getString("score2");
 
-
+        setResult(RESULT_OK, getIntent());
 
         finish();
     }
