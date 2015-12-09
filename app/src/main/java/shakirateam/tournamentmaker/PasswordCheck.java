@@ -19,6 +19,7 @@ public class PasswordCheck extends Activity {
     String tournamentname="";
     int whatToOpen=0;
     String addOrRemoveStr="";
+    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
 
 
     @Override
@@ -36,6 +37,9 @@ public class PasswordCheck extends Activity {
              addOrRemoveStr = getIntent().getStringExtra("AddorRemove");
 
         }
+        if(getIntent().getStringExtra("TournamentName")!=null) {
+            tournaments = (ArrayList<Tournament>) extra.getSerializable("tournaments");
+        }
         String whatToOpenStr = getIntent().getStringExtra("WHATTODO");
         whatToOpen = Integer.parseInt(whatToOpenStr);
 
@@ -52,8 +56,10 @@ public class PasswordCheck extends Activity {
             if(whatToOpen==1){
                 //open Delete Tournament
                 Intent intent = new Intent(getApplicationContext(), DeleteTournament.class); //Application Context and Activity
-                intent.putExtra("TournamentName",tournamentname);
-
+                Bundle extra = new Bundle();
+                intent.putExtra("tournament", tournament);
+                extra.putSerializable("tournamentsList", tournaments);
+                intent.putExtra("extra", extra);
                 startActivityForResult(intent, 0);
                 finish();
             }

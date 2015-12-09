@@ -77,7 +77,7 @@ public class TournamentCreator extends Activity{
 
     public void CreateTournament(){
 
-        Toast.makeText(TournamentCreator.this, tournaments.get(1).getType(), Toast.LENGTH_SHORT).show();
+
 
         tournaments.add(new Tournament(type, gender, false, passwordstring));
 

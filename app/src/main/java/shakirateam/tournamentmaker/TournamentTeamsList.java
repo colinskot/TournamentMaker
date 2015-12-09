@@ -82,6 +82,7 @@ public class TournamentTeamsList extends Activity{
                 public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
 
 
+
                     tournament.addTeam(teams.get(position));
                     Bundle extra = new Bundle();
                     extra.putSerializable("tournament", tournament);

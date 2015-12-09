@@ -15,65 +15,6 @@ import android.widget.Toast;
 public class Games extends Activity{
 
 
-    /*String tournamentName="Tournament Games";
-            String listOfTeamNames1[] = new String[]{
-            "Team 1",
-            "Team 2",
-            "Team 3",
-            "Team 4",
-            "Team 5",
-            "Team 6",
-            "Team 7",
-            "Team 8",
-            "Team 9",
-            "Team 10",
-            "Team 11",
-            "Team 12"
-    };
-
-    String listOfTeamNames2[] = new String[] {
-            "Team 13",
-            "Team 14",
-            "Team 15",
-            "Team 16",
-            "Team 17",
-            "Team 18",
-            "Team 19",
-            "Team 20",
-            "Team 21",
-            "Team 22",
-            "Team 23",
-            "Team 24"
-    };
-
-    int teamlogos1[] = new int[] {
-            R.drawable.ic_logo_00,
-            R.drawable.ic_logo_01,
-            R.drawable.ic_logo_02,
-            R.drawable.ic_logo_03,
-            R.drawable.ic_logo_04,
-            R.drawable.ic_logo_05,
-            R.drawable.ic_logo_00,
-            R.drawable.ic_logo_01,
-            R.drawable.ic_logo_02,
-            R.drawable.ic_logo_03,
-            R.drawable.ic_logo_04,
-            R.drawable.ic_logo_05
-    };
-    int teamlogos2[] = new int[] {
-            R.drawable.ic_logo_00,
-            R.drawable.ic_logo_01,
-            R.drawable.ic_logo_02,
-            R.drawable.ic_logo_03,
-            R.drawable.ic_logo_04,
-            R.drawable.ic_logo_05,
-            R.drawable.ic_logo_00,
-            R.drawable.ic_logo_01,
-            R.drawable.ic_logo_02,
-            R.drawable.ic_logo_03,
-            R.drawable.ic_logo_04,
-            R.drawable.ic_logo_05
-    };*/
 
     ArrayList<Game> games = new ArrayList<>();
     Knockout knockout;
@@ -148,6 +89,8 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
                 int score1 = Integer.parseInt(data.getStringExtra("score1"));
                 int score2 = Integer.parseInt(data.getStringExtra("score2"));
                 knockout.determineWinner(score1, score2, games.get(picked));
+                games = knockout.getCurrentStandings();
+                createUserInterface();
             }
         }
     }

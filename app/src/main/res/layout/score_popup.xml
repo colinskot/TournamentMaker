@@ -58,8 +58,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="getTeam1"
-                    android:id="@+id/getTeam1" />
+                    android:text="Team1 Score"
+                    android:id="@+id/getTeam1"
+                    android:textSize="10dp" />
             </LinearLayout>
 
             <Space
@@ -93,8 +94,9 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="getTeam2"
-                    android:id="@+id/textView5" />
+                    android:text="Team2 Score"
+                    android:id="@+id/textView5"
+                    android:textSize="10dp" />
             </LinearLayout>
 
         </LinearLayout>

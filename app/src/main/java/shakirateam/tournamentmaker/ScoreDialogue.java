@@ -37,11 +37,8 @@ public class ScoreDialogue extends Activity{
     public void openConfirmDialogue(View view) {
 
         Intent intent = new Intent(getApplicationContext(), ConfirmDialogue.class); //Application Context and Activity
-
         final EditText score1 = (EditText) findViewById(R.id.score1);
         final EditText score2 = (EditText) findViewById(R.id.score2);
-
-
 
         intent.putExtra("score1", score1.getText().toString());
         intent.putExtra("score2", score2.getText().toString());

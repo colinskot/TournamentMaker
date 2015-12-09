@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class TournamentInfo extends Activity {
 
     private Tournament tournament;
+    private ArrayList<Tournament> tournaments = new ArrayList<Tournament>();
     private ArrayList<Team> teams;
     private ArrayList<Team> totalTeams;
     String tournamentName="Tournament Name";
@@ -36,15 +37,15 @@ public class TournamentInfo extends Activity {
         setContentView(R.layout.activity_tournament_info);
 
         Bundle extra = getIntent().getBundleExtra("extra");
-        //Bundle team = getIntent().getBundleExtra("team");
 
         tournament = (Tournament) extra.getSerializable("tournament");
         teams = tournament.teamsList();
         totalTeams = (ArrayList<Team>) extra.getSerializable("teams");
         tournamentIndex = Integer.parseInt(extra.getString("TPicked"));
+        tournaments = (ArrayList<Tournament>) extra.getSerializable("tournaments");
 
-        tournamentName="Tournament";
-        //TournamentName = Integer.parseInt(tournamentName);
+        tournamentName="Tournament "+extra.getString("TPicked");
+
         tournamentType=tournament.getType();
         tournamentGender = "Womens";
         if (tournament.getGender() == true)
@@ -54,7 +55,7 @@ public class TournamentInfo extends Activity {
 
 
         TextView tournamentTitle = (TextView ) findViewById(R.id.txtTournamentName);
-        tournamentTitle.setText("Tournament");
+        tournamentTitle.setText(tournamentName);
         TextView tournamentTypeText = (TextView ) findViewById(R.id.txtTournamentType);
         tournamentTypeText.setText(tournamentType);
         TextView tournamentGenderText = (TextView ) findViewById(R.id.txtGender);
@@ -87,7 +88,7 @@ public class TournamentInfo extends Activity {
         if(tournamentActiveboolean==true){
             TextView tournamentActiveText = (TextView ) findViewById(R.id.txtActive);
             tournamentActiveText.setText("Active");
-            //btnViewGames.setEnabled(true);
+
             btnViewGames.setText("View Games");
 
             Button btnAddTeam = (Button) findViewById(R.id.btnAddTeam);
@@ -119,12 +120,13 @@ public class TournamentInfo extends Activity {
         Bundle extra = new Bundle();
         extra.putSerializable("tournament", tournament);
         extra.putString("TPicked", Integer.toString(tournamentIndex));
-        setResult(RESULT_CANCELED ,getIntent().putExtra("extra", extra));
+        setResult(RESULT_CANCELED, getIntent().putExtra("extra", extra));
     }
     public void onClickDelete(View view) {
         String whattodo= String.valueOf(1);
         Bundle extra = new Bundle();
         extra.putSerializable("tournament", tournament);
+        extra.putSerializable("tournamentsList", tournaments);
 
         Intent intent = new Intent(getApplicationContext(), PasswordCheck.class); //Application Context and Activity
         intent.putExtra("WHATTODO",whattodo);

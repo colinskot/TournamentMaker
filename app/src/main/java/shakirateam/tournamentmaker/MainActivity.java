@@ -33,52 +33,6 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        String TESTtypeOfTournament[] = {
-                "Knockout",
-                "Round Robin",
-                "Combination",
-        };
-
-        boolean TESTgenders[] = {
-                true,
-                false,
-                false,
-        };
-
-        boolean TESTactives[] ={
-                true,
-                false,
-                false
-        };
-        String TESTpasswords[] = {
-                "",
-                "123",
-                "321",
-        };
-        Team TESTteams[]={
-           new Team("Team1", R.drawable.ic_logo_01,true),
-           new Team("Team2", R.drawable.ic_logo_02,false),
-           new Team("Team3", R.drawable.ic_logo_03,false),
-
-        };
-
-
-            //teams.add(TESTteams[0]);
-            teams.add(TESTteams[1]);
-            teams.add(TESTteams[2]);
-
-
-
-        String numberOfTeams[] = {"Teams Registered: 2", "Teams Registered: 3",
-                "Teams Registered: 6"} ;
-
-        //input Test values for 3 tournaments
-    for(int i=0;i<3;i++) {
-
-         tournaments.add(new Tournament(TESTtypeOfTournament[i],TESTgenders[i],TESTactives[i],TESTpasswords[i],teams));
-    }
-
-
 
 
 
@@ -103,9 +57,9 @@ public class MainActivity extends AppCompatActivity {
             writeTournamentsFile();
         }
 
-
-        updateTournamentList(tournaments);
-
+        if(tournaments!=null) {
+            updateTournamentList(tournaments);
+        }
 
         writeTeamFile();
 
@@ -124,11 +78,17 @@ public class MainActivity extends AppCompatActivity {
         // Add all the values into the array list
         for(int i = 0; i < tournaments.size(); i++) {
             String g;
+            String a;
+            if (tournaments.get(i).getActivity()==(true))
+                a = "Active";
+            else
+                a = "Not Active";
+
             if (tournaments.get(i).getGender()==(true))
                 g = "Mens";
             else
                 g = "Womens";
-            items.add(new CustomTournamentItem("Tournament "+i, tournaments.get(i).getType(),g, "3"));
+            items.add(new CustomTournamentItem("Tournament "+i, tournaments.get(i).getType(),g,a ));
         }
 
         TournamentListAdapter customAdapter = new TournamentListAdapter(this, items);
@@ -143,14 +103,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> tourneyView, View view, int position, long id) {
 
-                String tournamentPicked = String.valueOf(tourneyView.getItemAtPosition(position));
-
                 openTournamentInfo(position);
 
             }
         });
 
-
+        writeTournamentsFile();
     }
 
 
@@ -159,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
         String TPickedstr= String.valueOf(TPicked);
         Bundle extra = new Bundle();
         extra.putSerializable("tournament", tournaments.get(TPicked));
-        //tournaments.remove(TPicked);
+        extra.putSerializable("tournaments", tournaments);
+
         extra.putSerializable("teams", teams);
         extra.putString("TPicked", Integer.toString(TPicked));
         Intent intent = new Intent(getApplicationContext(), TournamentInfo.class); //Application Context and Activity
@@ -351,6 +310,7 @@ public class MainActivity extends AppCompatActivity {
                 int TPicked = Integer.parseInt(extra.getString("TPicked"));
                 Tournament t = (Tournament) extra.getSerializable("tournament");
                 tournaments.set(TPicked, t);
+                updateTournamentList(tournaments);
                 //System.out.println(data.getExtras().toString());
             }else{
                 if (data != null) {

@@ -38,13 +38,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Teams Registered: --"
-            android:id="@+id/txtTeamsRegistered" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Active/Not Active"
             android:id="@+id/txtActive" />
 

@@ -14,6 +14,8 @@ import android.widget.Button;
 
 public class ConfirmDialogue extends Activity {
 
+    String score1,score2;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);

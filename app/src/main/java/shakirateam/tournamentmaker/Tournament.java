@@ -71,9 +71,11 @@ public class Tournament implements Serializable {
      * @param toadd The team to be added
      */
     public void addTeam(Team toadd){
+
         if (!teams.contains(toadd))
             teams.add(toadd);
     }
+
 
     /**
      * For removing a team from a tournament
